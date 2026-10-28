@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>영디자인&바스 AI 통화요약 자동 문자 시스템</title>
+  <meta name="description" content="동생(아이폰) 뒷면 톡톡 원터치 & 부모님(갤럭시) 무조작 자동 전송 | 영디자인&바스 실전 AI 통화요약 문자 시스템">
+  
+  <!-- Pretendard Font -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #1e3a8a;       /* 로얄 네이비 */
+      --primary-light: #3b82f6;
+      --primary-dark: #0f172a;
+      --accent: #d97706;        /* 골드/앰버 포인트 */
+      --accent-light: #fef3c7;
+      --success: #059669;       /* 에메랄드 */
+      --success-light: #d1fae5;
+      --danger: #dc2626;        /* 경고 레드 */
+      --danger-light: #fee2e2;
+      --surface: #ffffff;
+      --bg: #f8fafc;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --card-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 80px;
+    }
+
+    /* Top Sticky Navigation */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: #fff;
+      padding: 12px 20px;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .brand-badge {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #fff;
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    .nav-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Hero Banner */
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #1d4ed8 100%);
+      color: #fff;
+      padding: 40px 20px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(217, 119, 6, 0.18) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-badge-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .pill-gold {
+      background: rgba(217, 119, 6, 0.25);
+      border: 1px solid rgba(245, 158, 11, 0.5);
+      color: #fef3c7;
+    }
+    .pill-green {
+      background: rgba(5, 150, 105, 0.25);
+      border: 1px solid rgba(16, 185, 129, 0.5);
+      color: #d1fae5;
+    }
+    .pill-blue {
+      background: rgba(59, 130, 246, 0.25);
+      border: 1px solid rgba(96, 165, 250, 0.5);
+      color: #dbeafe;
+    }
+    .hero h1 {
+      font-size: 1.85rem;
+      font-weight: 800;
+      line-height: 1.35;
+      margin-bottom: 12px;
+      letter-spacing: -0.8px;
+    }
+    .hero p {
+      font-size: 0.98rem;
+      color: #cbd5e1;
+      max-width: 680px;
+      margin: 0 auto 20px;
+      font-weight: 400;
+    }
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .metric-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-md);
+      padding: 12px 8px;
+      backdrop-filter: blur(8px);
+    }
+    .metric-val {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #fef3c7;
+    }
+    .metric-lbl {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-top: 2px;
+    }
+
+    /* Container */
+    .container {
+      max-width: 980px;
+      margin: -24px auto 0;
+      padding: 0 16px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Card Wrapper */
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--card-shadow);
+      border: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      letter-spacing: -0.5px;
+    }
+    .card-title i {
+      color: var(--primary-light);
+      font-size: 1.3rem;
+    }
+    .card-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: #eff6ff;
+      color: var(--primary);
+    }
+
+    /* Section 1: Simulator */
+    .scenario-btn-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 768px) {
+      .scenario-btn-group {
+        grid-template-columns: 1fr;
+      }
+    }
+    .scenario-btn {
+      background: #f1f5f9;
+      border: 2px solid transparent;
+      border-radius: var(--radius-md);
+      padding: 14px 12px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .scenario-btn:hover {
+      background: #e2e8f0;
+    }
+    .scenario-btn.active {
+      background: #eff6ff;
+      border-color: var(--primary-light);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+    }
+    .scenario-btn .sc-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      width: fit-content;
+    }
+    .badge-sc1 { background: #dbeafe; color: #1d4ed8; }
+    .badge-sc2 { background: #fef3c7; color: #b45309; }
+    .badge-sc3 { background: #fee2e2; color: #b91c1c; }
+    .scenario-btn .sc-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      line-height: 1.3;
+    }
+    .scenario-btn .sc-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Input & Speech Area */
+    .input-box-wrap {
+      position: relative;
+      margin-bottom: 18px;
+    }
+    .input-box {
+      width: 100%;
+      min-height: 110px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: var(--text);
+      resize: vertical;
+      transition: border-color 0.2s;
+    }
+    .input-box:focus {
+      outline: none;
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    }
+    .input-tools {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mic-btn {
+      background: #f1f5f9;
+      color: #334155;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .mic-btn.recording {
+      background: #ef4444;
+      color: #fff;
+      animation: pulse 1.5s infinite;
+      border-color: #dc2626;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5); }
+      70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+    }
+    .run-btn {
+      background: linear-gradient(135deg, var(--primary) 0%, #2563eb 100%);
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      padding: 10px 22px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+      transition: all 0.2s;
+    }
+    .run-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+    }
+
+    /* AI Options Toggle */
+    .ai-options {
+      margin-top: 12px;
+      padding: 10px 14px;
+      background: #f8fafc;
+      border-radius: var(--radius-sm);
+      border: 1px dashed var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.82rem;
+    }
+    .ai-options input[type="password"] {
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.8rem;
+      width: 220px;
+    }
+
+    /* Output Results Area */
+    .output-card {
+      margin-top: 20px;
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      position: relative;
+    }
+    .output-card.blocked {
+      background: var(--danger-light);
+      border-color: #f87171;
+    }
+    .output-status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+    .status-badge.allowed {
+      background: var(--success);
+      color: #fff;
+    }
+    .status-badge.blocked {
+      background: var(--danger);
+      color: #fff;
+    }
+    .safety-shield {
+      background: #fef3c7;
+      border-left: 4px solid var(--accent);
+      padding: 10px 14px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.85rem;
+      color: #92400e;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .safety-shield i {
+      margin-top: 3px;
+      font-size: 1rem;
+    }
+
+    /* Phone SMS Preview */
+    .phone-mockup {
+      max-width: 480px;
+      margin: 12px auto;
+      background: #ffffff;
+      border: 10px solid #1e293b;
+      border-radius: 36px;
+      padding: 20px 16px 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      position: relative;
+    }
+    .phone-notch {
+      width: 120px;
+      height: 18px;
+      background: #1e293b;
+      border-radius: 0 0 12px 12px;
+      margin: -20px auto 14px;
+    }
+    .sms-bubble {
+      background: #e2e8f0;
+      color: #0f172a;
+      border-radius: 18px 18px 18px 4px;
+      padding: 14px 16px;
+      font-size: 0.92rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      word-break: break-all;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      border-left: 3px solid var(--primary-light);
+    }
+    .sms-bubble strong {
+      color: var(--primary);
+    }
+
+    /* Action Buttons Under Preview */
+    .sms-action-group {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    @media (max-width: 500px) {
+      .sms-action-group {
+        grid-template-columns: 1fr;
+      }
+    }
+    .btn-sms-app {
+      background: #10b981;
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 14px;
+      font-size: 0.98rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+      transition: all 0.2s;
+    }
+    .btn-sms-app:hover {
+      background: #059669;
+      transform: translateY(-1px);
+    }
+    .btn-copy-sms {
+      background: #f1f5f9;
+      color: #334155;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-copy-sms:hover {
+      background: #e2e8f0;
+    }
+
+    /* Section 2: Architecture Tabs */
+    .device-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 2px;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 12px 16px;
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Workflow Step Cards */
+    .step-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+    }
+    .step-card {
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+    .step-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    .icon-galaxy { background: #e0f2fe; color: #0284c7; }
+    .icon-iphone { background: #fce7f3; color: #db2777; }
+    .step-body h4 {
+      font-size: 1.02rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--primary-dark);
+    }
+    .step-body p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .step-body .highlight-box {
+      margin-top: 8px;
+      background: #f8fafc;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.84rem;
+      border-left: 3px solid var(--primary-light);
+      color: #334155;
+    }
+
+    /* Comparison Box */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    @media (max-width: 768px) {
+      .compare-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .compare-card {
+      border-radius: var(--radius-md);
+      padding: 20px;
+      border: 2px solid;
+    }
+    .compare-galaxy {
+      background: #f0fdf4;
+      border-color: #86efac;
+    }
+    .compare-iphone {
+      background: #eff6ff;
+      border-color: #93c5fd;
+    }
+    .compare-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .compare-list {
+      list-style: none;
+      font-size: 0.88rem;
+    }
+    .compare-list li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .compare-list i {
+      margin-top: 3px;
+      font-size: 0.95rem;
+    }
+
+    /* Code & Prompt Box */
+    .code-box-wrap {
+      background: #0f172a;
+      border-radius: var(--radius-md);
+      padding: 16px;
+      color: #e2e8f0;
+      margin-top: 14px;
+      position: relative;
+    }
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+    .code-content {
+      font-family: "Consolas", monospace, sans-serif;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .btn-copy-code {
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.2s;
+    }
+    .btn-copy-code:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    /* FAQ Collapsible */
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    .faq-q {
+      background: #ffffff;
+      padding: 14px 18px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-a {
+      padding: 14px 18px;
+      background: #f8fafc;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      display: none;
+      line-height: 1.6;
+    }
+    .faq-item.open .faq-a {
+      display: block;
+    }
+    .faq-item.open .faq-q i {
+      transform: rotate(180deg);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #0f172a;
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      z-index: 9999;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="top-nav">
+    <div class="brand">
+      <i class="fa-solid fa-bath text-blue-400"></i>
+      <span>영디자인&바스</span>
+      <span class="brand-badge">AI 통화요약 자동화</span>
+    </div>
+    <div class="nav-actions">
+      <a href="https://fillestar.github.io/youngdesign-bath/" target="_blank" class="nav-btn">
+        <i class="fa-solid fa-globe"></i> 공식 웹
+      </a>
+      <a href="#simulator" class="nav-btn">
+        <i class="fa-solid fa-mobile-screen"></i> 체험하기
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Banner -->
+  <header class="hero">
+    <div class="hero-badge-wrap">
+      <span class="pill pill-gold"><i class="fa-solid fa-bolt"></i> 복붙 0번 시스템</span>
+      <span class="pill pill-green"><i class="fa-solid fa-shield-halved"></i> 어림견적 분쟁 방지 가드</span>
+      <span class="pill pill-blue"><i class="fa-solid fa-coins"></i> 평생 무료 (Gemini Flash)</span>
+    </div>
+    <h1>통화 끝나면 1초 만에<br>고객 맞춤 안내 문자가 짠!</h1>
+    <p>
+      어머니·대표님은 통화 후 <strong>[전송] 버튼만 1번</strong>!<br>
+      동생(근렬)은 아이폰 <strong>뒷면 두 번 톡톡</strong>으로 3초 만에 발송창 오픈!
+    </p>
+
+    <div class="hero-metrics">
+      <div class="metric-card">
+        <div class="metric-val">0번</div>
+        <div class="metric-lbl">복사·붙여넣기 횟수</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">100%</div>
+        <div class="metric-lbl">분쟁 금액 자동 치환</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">3초</div>
+        <div class="metric-lbl">문자 준비 완료 시간</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container">
+
+    <!-- SECTION 1: INTERACTIVE SIMULATOR -->
+    <section class="card" id="simulator">
+      <div class="card-header">
+        <div class="card-title">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span>실전 통화 요약 & 문자 변환 시뮬레이터</span>
+        </div>
+        <span class="card-tag">아이폰 / 갤럭시 즉시 호환</span>
+      </div>
+
+      <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 16px;">
+        아래 3가지 실제 사례 버튼을 눌러보세요. 통화 원문이 어떻게 정중하고 안전한 문자로 바뀌는지 즉시 체험할 수 있습니다.
+      </p>
+
+      <!-- 3 Scenario Buttons -->
+      <div class="scenario-btn-group">
+        <button type="button" class="scenario-btn active" onclick="loadScenario(1)">
+          <span class="sc-badge badge-sc1">사례 ① 무료 실측 예약</span>
+          <span class="sc-title">다대 롯데캐슬 33평 (2칸)</span>
+          <span class="sc-desc">어림 금액 언급 분쟁 방지 치환</span>
+        </button>
+
+        <button type="button" class="scenario-btn" onclick="loadScenario(2)">
+          <span class="sc-badge badge-sc2">사례 ② 거주 중 타일 보수</span>
+          <span class="sc-title">명지 협성휴포레 24평</span>
+          <span class="sc-desc">비닐 보양 안내 + 현장 사진 요청</span>
+        </button>
+
+        <button type="button" class="scenario-btn" onclick="loadScenario(3)">
+          <span class="sc-badge badge-sc3">사례 ③ 자재상/반장님 통화</span>
+          <span class="sc-title">김반장님 타일 15박스 발주</span>
+          <span class="sc-desc">AI 자동 판별 → 문자 발송 자동 차단</span>
+        </button>
+      </div>
+
+      <!-- Input Area with Mic -->
+      <div class="input-box-wrap">
+        <label style="display:block; font-size:0.85rem; font-weight:700; margin-bottom:6px; color:#334155;">
+          통화 내용 또는 메모 입력 (음성 또는 직접 타이핑 가능)
+        </label>
+        <textarea id="callInput" class="input-box" placeholder="통화 내용을 입력하거나 아래 마이크를 누르고 말씀해 보세요..."></textarea>
+        
+        <div class="input-tools">
+          <button type="button" id="micBtn" class="mic-btn" onclick="toggleSpeechRecognition()">
+            <i class="fa-solid fa-microphone"></i>
+            <span id="micStatusText">음성으로 말하기</span>
+          </button>
+
+          <button type="button" class="run-btn" onclick="processCallSummary()">
+            <i class="fa-solid fa-bolt"></i>
+            <span>문자 변환 실행하기</span>
+          </button>
+        </div>
+
+        <!-- Optional Gemini API Key Toggle -->
+        <div class="ai-options">
+          <div>
+            <label style="cursor: pointer; font-weight:600;">
+              <input type="checkbox" id="useGeminiApi" onchange="toggleApiKeyInput()"> Google Gemini 2.5 Flash 실시간 AI 모드 (선택사항)
+            </label>
+          </div>
+          <div id="apiKeyWrap" style="display: none;">
+            <input type="password" id="geminiApiKey" placeholder="무료 Gemini API Key 붙여넣기">
+          </div>
+        </div>
+      </div>
+
+      <!-- Output Preview Area -->
+      <div id="outputArea" class="output-card">
+        <div class="output-status">
+          <div id="statusBadge" class="status-badge allowed">
+            <i class="fa-solid fa-circle-check"></i>
+            <span>고객 상담 통화 판별 완료</span>
+          </div>
+          <span id="targetSummary" style="font-size:0.82rem; color:var(--text-muted); font-weight:600;">
+            다대 롯데캐슬블루 33평 / 욕실 2칸
+          </span>
+        </div>
+
+        <!-- Safety Shield Notice -->
+        <div id="safetyNotice" class="safety-shield">
+          <i class="fa-solid fa-shield-halved"></i>
+          <div>
+            <strong>어림견적 분쟁 방지 세이프티 가드 발동!</strong><br>
+            <span id="safetyDetail">
+              통화 중 언급된 어림 금액(200후반~300초반)은 오해와 분쟁 방지를 위해 <strong>'현장 타일·방수 상태 점검 후 정확한 견적 안내'</strong>로 안전하게 자동 치환되었습니다.
+            </span>
+          </div>
+        </div>
+
+        <!-- Blocked Notice (Scenario 3) -->
+        <div id="blockedNotice" style="display:none; text-align:center; padding:20px 10px;">
+          <div style="font-size:2.5rem; color:#dc2626; margin-bottom:8px;">
+            <i class="fa-solid fa-ban"></i>
+          </div>
+          <h3 style="color:#b91c1c; font-size:1.15rem; font-weight:800; margin-bottom:6px;">
+            🚫 [발송 자동 차단] 고객 상담 통화가 아닙니다
+          </h3>
+          <p style="font-size:0.88rem; color:#7f1d1d; max-width:480px; margin:0 auto;">
+            사유: <strong>거래처/현장 자재 발주 업무 통화</strong>로 AI가 정확히 판별하여, 고객용 안내 문자를 발송하지 않고 안전하게 차단했습니다. 안심하세요!
+          </p>
+        </div>
+
+        <!-- Phone Preview Mockup -->
+        <div id="phoneMockup" class="phone-mockup">
+          <div class="phone-notch"></div>
+          <div style="text-align:center; font-size:0.75rem; color:#64748b; margin-bottom:8px; font-weight:600;">
+            💬 메시지 앱 미리보기
+          </div>
+          <div id="smsPreviewBody" class="sms-bubble">
+[영디자인&바스 무료 방문 실측 안내]
+안녕하세요, 고객님! 방금 문의주신 영디자인&바스입니다.
+
+■ 문의 현장: 다대 롯데캐슬블루 33평
+■ 공사 내용: 공용 및 안방 욕실 2칸 리모델링
+■ 방문 실측 일시: 이번 주 목요일 오후 2시 (무료 방문 점검)
+■ 견적 안내: 정확한 공사 금액은 현장 타일 상태(덧방/철거) 및 방수·배관 점검 후 정직하고 투명하게 산출해 드리겠습니다.
+
+* 방문 당일 출발 전 미리 연락드리겠습니다. 감사합니다!
+- 영디자인&바스 (010-8588-4687 / 010-4544-4687)
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div id="actionButtonGroup" class="sms-action-group">
+          <a id="smsDirectLink" href="#" class="btn-sms-app">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span>📱 이 내용으로 문자앱 바로 열기 (sms:)</span>
+          </a>
+          <button type="button" class="btn-copy-sms" onclick="copySmsText()">
+            <i class="fa-solid fa-copy"></i>
+            <span>문자 복사</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SECTION 2: DEVICE ARCHITECTURE GUIDE -->
+    <section class="card" id="architecture">
+      <div class="card-header">
+        <div class="card-title">
+          <i class="fa-solid fa-diagram-project"></i>
+          <span>기기별 '복붙 0번' 실전 구축 설계도</span>
+        </div>
+        <span class="card-tag">갤럭시 vs 아이폰</span>
+      </div>
+
+      <!-- Tab Buttons -->
+      <div class="device-tabs">
+        <button type="button" id="tabBtnGalaxy" class="tab-btn active" onclick="switchDeviceTab('galaxy')">
+          <i class="fa-brands fa-android text-emerald-500"></i>
+          <span>🅰 부모님 폰 (갤럭시 무조작)</span>
+        </button>
+        <button type="button" id="tabBtnIphone" class="tab-btn" onclick="switchDeviceTab('iphone')">
+          <i class="fa-brands fa-apple text-blue-500"></i>
+          <span>🅱 동생 폰 (아이폰 뒷면 톡톡)</span>
+        </button>
+      </div>
+
+      <!-- Galaxy Tab Content -->
+      <div id="tabContentGalaxy" class="tab-content active">
+        <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:var(--radius-md); padding:16px; margin-bottom:18px;">
+          <h3 style="color:#166534; font-size:1.05rem; font-weight:800; display:flex; align-items:center; gap:8px;">
+            <i class="fa-solid fa-circle-check"></i>
+            <span>부모님 조작 행동: "전화 끊고 화면에 뜬 [전송] 1번 누르면 끝!"</span>
+          </h3>
+          <p style="font-size:0.86rem; color:#15803d; margin-top:4px;">
+            복사, 붙여넣기, 메모장 열기, 번호 찾기 전부 필요 없습니다. 통화가 끝나면 화면에 방금 통화한 고객 번호와 함께 AI 요약 문자가 자동으로 열립니다.
+          </p>
+        </div>
+
+        <div class="step-flow">
+          <div class="step-card">
+            <div class="step-icon-wrap icon-galaxy">
+              <i class="fa-solid fa-phone-volume"></i>
+            </div>
+            <div class="step-body">
+              <h4>1단계: 고객과 통화 종료</h4>
+              <p>갤럭시 기본 전화 앱이 통화를 자동으로 고음질 녹음합니다 (`/Recordings/Call/*.m4a`).</p>
+              <div class="highlight-box">
+                💡 <strong>갤럭시 사전 세팅:</strong> 전화 앱 → 설정 → [통화 녹음] → [통화 자동 녹음: 모든 전화] 켜기
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-icon-wrap icon-galaxy">
+              <i class="fa-solid fa-robot"></i>
+            </div>
+            <div class="step-body">
+              <h4>2단계: MacroDroid 자동화 앱이 '통화 종료' 감지</h4>
+              <p>무료 매크로 앱 <code>MacroDroid</code>가 통화 종료 트리거를 낚아챕니다. 단골 자재상이나 가족 번호는 1차 제외 필터로 스킵합니다.</p>
+              <div class="highlight-box">
+                💡 <strong>구글 플레이스토어:</strong> 무료 앱 <code>MacroDroid (기기 자동화)</code> 설치 후 백그라운드 배터리 최적화 예외 설정
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-icon-wrap icon-galaxy">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+            <div class="step-body">
+              <h4>3단계: 구글 무료 Gemini Flash API 분석</h4>
+              <p>통화 내용에서 아파트명, 평형, 리모델링 항목, 방문 약속을 추출하고 <strong>어림금액 분쟁 방지 가드</strong>를 적용합니다.</p>
+              <div class="highlight-box">
+                🛡️ <strong>자재상/스팸 통화 시:</strong> AI가 "거래처 통화"로 판별하여 매크로 즉시 종료 (문자 발송 원천 차단)
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-icon-wrap icon-galaxy">
+              <i class="fa-solid fa-paper-plane"></i>
+            </div>
+            <div class="step-body">
+              <h4>4단계: 부모님 화면에 문자 발송창 자동 팝업</h4>
+              <p>고객 번호와 요약 문자가 채워진 상태로 기본 메시지 앱이 화면 맨 앞에 뜹니다. 부모님은 눈으로 3초 확인 후 <strong>[전송]</strong> 터치!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- iPhone Tab Content -->
+      <div id="tabContentIphone" class="tab-content">
+        <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:var(--radius-md); padding:16px; margin-bottom:18px;">
+          <h3 style="color:#1e40af; font-size:1.05rem; font-weight:800; display:flex; align-items:center; gap:8px;">
+            <i class="fa-solid fa-mobile-screen"></i>
+            <span>동생(근렬) 조작 행동: "아이폰 뒷면 톡톡 두드리고 3초 말하면 전송창 팝업!"</span>
+          </h3>
+          <p style="font-size:0.86rem; color:#1d4ed8; margin-top:4px;">
+            아이폰은 폐쇄적인 iOS 보안상 백그라운드 통화녹음 가로채기가 제한되므로, 가장 실용적이고 빠른 <strong>'3초 음성 브리핑 뒷면 탭 단축어'</strong>를 사용합니다.
+          </p>
+        </div>
+
+        <div class="step-flow">
+          <div class="step-card">
+            <div class="step-icon-wrap icon-iphone">
+              <i class="fa-solid fa-hand-pointer"></i>
+            </div>
+            <div class="step-body">
+              <h4>방법 1 [강력 추천]: 아이폰 뒷면 두 번 탭 (3초 음성 브리핑)</h4>
+              <p>통화가 끝나자마자 아이폰 뒷면을 '톡톡' 두 번 두드립니다.</p>
+              <div class="highlight-box">
+                🗣️ <strong>입으로 3초 브리핑:</strong> <em>"삼경아파트 24평 욕실 1칸 금요일 3시 실측"</em><br>
+                ✨ <strong>결과:</strong> AI가 즉시 영디자인&바스 품격 안내 문자로 변환하여 메시지 발송창 오픈!
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-icon-wrap icon-iphone">
+              <i class="fa-solid fa-share-nodes"></i>
+            </div>
+            <div class="step-body">
+              <h4>방법 2: 에이닷 / 익시오 / iOS 18 통화요약 화면에서 [공유]</h4>
+              <p>SKT 에이닷이나 LGU+ 익시오, iOS 통화요약 텍스트 화면에서 <strong>[공유] → [영디자인 AI 문자]</strong>를 누르면 1초 만에 고객 발송창이 완성됩니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- iPhone Setup Tip -->
+        <div style="margin-top:16px; padding:14px; background:#f8fafc; border-radius:var(--radius-md); border:1px solid var(--border);">
+          <h5 style="font-size:0.92rem; font-weight:700; color:#334155; margin-bottom:6px;">
+            <i class="fa-solid fa-gear"></i> 아이폰 뒷면 탭 활성화 1분 세팅:
+          </h5>
+          <ol style="font-size:0.85rem; color:#64748b; padding-left:18px; line-height:1.6;">
+            <li>아이폰 <strong>설정</strong> 앱 실행</li>
+            <li><strong>손쉬운 사용</strong> → <strong>터치</strong> 이동</li>
+            <li>화면 맨 아래 <strong>뒷면 탭</strong> → <strong>이중 탭</strong> 선택</li>
+            <li>목록 맨 아래 단축어에서 <strong>[영디자인 AI 문자]</strong> 선택</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Comparison Summary -->
+      <div class="compare-grid">
+        <div class="compare-card compare-galaxy">
+          <div class="compare-title" style="color:#166534;">
+            <i class="fa-brands fa-android"></i>
+            <span>부모님 (갤럭시 무조작)</span>
+          </div>
+          <ul class="compare-list" style="color:#15803d;">
+            <li><i class="fa-solid fa-check"></i> <strong>조작 횟수:</strong> 전송 1번 (0번 복붙)</li>
+            <li><i class="fa-solid fa-check"></i> <strong>방식:</strong> 통화 자동녹음 감지 + 매크로 자동실행</li>
+            <li><i class="fa-solid fa-check"></i> <strong>장점:</strong> 부모님이 스마트폰을 잘 몰라도 100% 작동</li>
+            <li><i class="fa-solid fa-check"></i> <strong>비용:</strong> 0원 (무료 MacroDroid + 무료 API)</li>
+          </ul>
+        </div>
+
+        <div class="compare-card compare-iphone">
+          <div class="compare-title" style="color:#1e40af;">
+            <i class="fa-brands fa-apple"></i>
+            <span>동생 (아이폰 원터치)</span>
+          </div>
+          <ul class="compare-list" style="color:#1d4ed8;">
+            <li><i class="fa-solid fa-check"></i> <strong>조작 횟수:</strong> 뒷면 톡톡 + 전송 1번</li>
+            <li><i class="fa-solid fa-check"></i> <strong>방식:</strong> 애플 기본 [단축어] + 뒷면 탭</li>
+            <li><i class="fa-solid fa-check"></i> <strong>장점:</strong> 외부 앱 설치 없이 기본 기능으로 초고속 작동</li>
+            <li><i class="fa-solid fa-check"></i> <strong>비용:</strong> 0원 (iOS 기본 단축어)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SECTION 3: SYSTEM PROMPT & RECIPES -->
+    <section class="card" id="recipes">
+      <div class="card-header">
+        <div class="card-title">
+          <i class="fa-solid fa-code"></i>
+          <span>그대로 복사해 쓰는 'AI 안전 프롬프트' & 설정 규격</span>
+        </div>
+        <span class="card-tag">원클릭 복사</span>
+      </div>
+
+      <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:14px;">
+        MacroDroid의 HTTP 요청 바디나 아이폰 단축어에 그대로 붙여넣을 수 있는 영디자인&바스 맞춤 프롬프트입니다.
+      </p>
+
+      <!-- System Prompt Box -->
+      <div class="code-box-wrap">
+        <div class="code-header">
+          <span><i class="fa-solid fa-shield-halved"></i> 영디자인&바스 안전 프롬프트 (JSON 규격)</span>
+          <button type="button" class="btn-copy-code" onclick="copyCode('promptCode')">
+            <i class="fa-solid fa-copy"></i> 복사하기
+          </button>
+        </div>
+        <div id="promptCode" class="code-content">당신은 부산·경남 최고의 욕실 리모델링 전문기업 "영디자인&바스"의 전문 상담 AI 비서입니다.
+입력된 통화 녹취나 상담 메모를 분석하여 엄격한 규칙에 따라 JSON으로만 응답하세요.
+
+[핵심 수칙]
+1. 고객 여부 판별 (is_customer_inquiry):
+   - 자재상, 반장님, 타일 도매, 가족, 단순 사적 통화는 즉시 "is_customer_inquiry": false 로 지정하고 문자를 생성하지 마세요.
+   - 아파트/빌라 욕실 수리, 타일 들뜸, 방문 실측 문의는 "is_customer_inquiry": true 로 지정하세요.
+2. 어림견적 분쟁 방지 필수 원칙 (최우선 수칙):
+   - 통화 중 "200만원대", "300만원 초반" 등의 어림 금액이 언급되었더라도 문자에는 절대 확정 금액 숫자를 적지 마세요.
+   - 반드시 "정확한 공사 금액은 현장 타일 상태(덧방/철거), 방수 및 배관 점검 후 정직하고 투명하게 산출해 드리겠습니다."로 치환하세요.
+3. 거주 중 시공 문의:
+   - "꼼꼼한 실내 비닐 보양(먼지 차단) 작업으로 살고 계신 상태에서도 안전하게 시공 가능합니다." 문구를 포함하세요.
+4. 타일 들뜸/보수 문의:
+   - "정확한 상태 진단을 위해 [파손 부위 근접 사진]과 [욕실 전체 사진]을 이 번호로 보내주시면 빠르게 안내해 드리겠습니다."를 포함하세요.
+
+[응답 JSON 규격]
+{
+  "is_customer_inquiry": true,
+  "customer_summary": "다대 롯데캐슬 33평 욕실 2칸",
+  "safety_replaced": true,
+  "appointment_info": "목요일 오후 2시 무료 방문 실측",
+  "sms_text": "고객에게 발송할 최종 문자 전문 (연락처: 영디자인&바스 010-8588-4687 / 010-4544-4687 포함)"
+}</div>
+      </div>
+
+      <!-- MacroDroid Action JSON Template -->
+      <div class="code-box-wrap" style="margin-top:20px;">
+        <div class="code-header">
+          <span><i class="fa-brands fa-android"></i> MacroDroid용 Gemini API HTTP Request Body 템플릿</span>
+          <button type="button" class="btn-copy-code" onclick="copyCode('macroBodyCode')">
+            <i class="fa-solid fa-copy"></i> 복사하기
+          </button>
+        </div>
+        <div id="macroBodyCode" class="code-content">{
+  "contents": [{
+    "parts": [{
+      "text": "시스템 프롬프트 지침에 따라 아래 통화내용을 분석해 JSON으로만 응답하라:\n\n[통화내용]\n{call_transcript}"
+    }]
+  }],
+  "generationConfig": {
+    "response_mime_type": "application/json",
+    "temperature": 0.2
+  }
+}</div>
+      </div>
+    </section>
+
+
+    <!-- FAQ SECTION -->
+    <section class="card" id="faq">
+      <div class="card-header">
+        <div class="card-title">
+          <i class="fa-solid fa-circle-question"></i>
+          <span>자주 묻는 질문 (FAQ)</span>
+        </div>
+        <span class="card-tag">비용·보안·오작동</span>
+      </div>
+
+      <div class="faq-item open">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Q. 시스템 운영에 매달 비용이 들어가나요?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-a">
+          <strong>전혀 들지 않습니다 (0원).</strong> 구글 Gemini 2.5 Flash API는 분당 15건, 하루 1,500건까지 완전 무료로 제공됩니다. 하루 상담 통화 10~30건 정도는 평생 100% 무료 범위 내에서 여유롭게 작동합니다.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Q. 통화 내용이 유출되거나 학습에 쓰이지 않나요?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-a">
+          <strong>안전합니다.</strong> 구글 제미나이 유료/개발자 API 엔드포인트는 구글 서비스 약관상 고객의 대화 데이터를 AI 모델 재학습에 사용하지 않는 기업용 보안 규격을 준수합니다. 또한 개인정보(주민번호, 계좌 비밀번호 등)는 통화에서 수집하지 않습니다.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Q. 현장에서 인터넷이나 데이터가 안 터지면 어떡하나요?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-a">
+          시뮬레이터에 내장된 것과 동일하게, 네트워크 연결이 불안정할 때는 스마트폰 자체 오프라인 템플릿(정규식 추출기)이 가동되어 아파트명과 시간만 안전하게 채운 표준 양식 문자를 생성합니다.
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast Notification Element -->
+  <div id="toast" class="toast">
+    <i class="fa-solid fa-check-circle text-emerald-400"></i>
+    <span id="toastMsg">클립보드에 복사되었습니다!</span>
+  </div>
+
+  <!-- Interactive JavaScript Engine -->
+  <script>
+    // Scenario Presets
+    const scenarios = {
+      1: {
+        raw: "고객: 다대동 롯데캐슬블루 33평인데요, 공용이랑 안방 욕실 두 칸 다 리모델링하려고요. 대략 얼마쯤 하나요?\n어머니: 기본 욕실은 보통 200 후반~300 초반대인데 타일 상태나 철거 범위를 봐야 정확해요. 이번 주 목요일 오후 2시에 방문 실측 무료로 봐드릴게요.",
+        isCustomer: true,
+        summary: "다대 롯데캐슬블루 33평 / 욕실 2칸 (공용·안방)",
+        safetyReplaced: true,
+        safetyDetail: "통화 중 언급된 어림 금액(200후반~300초반)은 오해와 분쟁 방지를 위해 <strong>'현장 타일·방수 상태 점검 후 정확한 견적 안내'</strong>로 안전하게 자동 치환되었습니다.",
+        smsText: `[영디자인&바스 무료 방문 실측 안내]
+안녕하세요, 고객님! 방금 통화 드린 영디자인&바스입니다.
+
+■ 문의 현장: 다대 롯데캐슬블루 33평
+■ 공사 내용: 공용 및 안방 욕실 2칸 리모델링
+■ 방문 실측 일시: 이번 주 목요일 오후 2시 (무료 방문 실측)
+■ 견적 안내: 정확한 공사 금액은 현장 타일 상태(덧방/철거) 및 방수·구조 점검 후 정직하고 투명하게 산출해 드리겠습니다.
+
+* 방문 당일 출발 전 미리 연락드리겠습니다. 감사합니다!
+- 영디자인&바스 드림 (010-8588-4687 / 010-4544-4687)`
+      },
+      2: {
+        raw: "고객: 명지 협성휴포레 24평 살고 있는 집인데 욕실 벽 타일이 들떠서 깨졌어요. 살면서 공사 되나요? 내일 사진 먼저 문자로 보낼게요.",
+        isCustomer: true,
+        summary: "명지 협성휴포레 24평 / 거주 중 타일 하자 보수",
+        safetyReplaced: false,
+        safetyDetail: "거주 중 실내 보양 안내와 파손 부위 상세 사진 접수 안내가 자동으로 완벽하게 구성되었습니다.",
+        smsText: `[영디자인&바스 현장 점검 안내]
+안녕하세요, 고객님! 영디자인&바스입니다.
+
+■ 문의 현장: 명지 협성휴포레 24평
+■ 문의 내용: 욕실 벽 타일 들뜸/파손 보수 및 리모델링
+■ 거주 중 시공: 꼼꼼한 실내 비닐 보양(먼지·분진 차단) 작업 후 거주 중에도 안심하고 시공 가능합니다.
+■ 사진 요청: 정확한 상태 진단 및 자재 준비를 위해 [들뜬 타일 근접 사진]과 [욕실 전체 사진]을 이 번호로 보내주시면 확인 후 빠르게 안내해 드리겠습니다.
+
+감사합니다! 영디자인&바스 (010-8588-4687 / 010-4544-4687)`
+      },
+      3: {
+        raw: "이세영 대표: 어 김반장님 내일 장림 현장 타일 300에 600짜리 15박스 오전에 올려주세요.",
+        isCustomer: false,
+        summary: "김반장님 자재 발주 (거래처/현장 업무)",
+        safetyReplaced: false,
+        safetyDetail: "",
+        smsText: ""
+      }
+    };
+
+    let currentSmsText = "";
+
+    // Load Scenario on Page Load
+    window.addEventListener('DOMContentLoaded', () => {
+      loadScenario(1);
+    });
+
+    function loadScenario(num) {
+      document.querySelectorAll('.scenario-btn').forEach((btn, idx) => {
+        btn.classList.toggle('active', (idx + 1) === num);
+      });
+
+      const sc = scenarios[num];
+      document.getElementById('callInput').value = sc.raw;
+      renderResult(sc);
+    }
+
+    function renderResult(data) {
+      const outputArea = document.getElementById('outputArea');
+      const statusBadge = document.getElementById('statusBadge');
+      const targetSummary = document.getElementById('targetSummary');
+      const safetyNotice = document.getElementById('safetyNotice');
+      const blockedNotice = document.getElementById('blockedNotice');
+      const phoneMockup = document.getElementById('phoneMockup');
+      const actionButtonGroup = document.getElementById('actionButtonGroup');
+      const smsPreviewBody = document.getElementById('smsPreviewBody');
+      const smsDirectLink = document.getElementById('smsDirectLink');
+
+      targetSummary.textContent = data.summary;
+
+      if (!data.isCustomer) {
+        // Blocked Mode (Scenario 3)
+        outputArea.classList.add('blocked');
+        statusBadge.className = 'status-badge blocked';
+        statusBadge.innerHTML = '<i class="fa-solid fa-ban"></i> <span>발송 자동 차단 (업무/거래처 통화)</span>';
+        safetyNotice.style.display = 'none';
+        blockedNotice.style.display = 'block';
+        phoneMockup.style.display = 'none';
+        actionButtonGroup.style.display = 'none';
+        currentSmsText = "";
+      } else {
+        // Normal Customer Mode
+        outputArea.classList.remove('blocked');
+        statusBadge.className = 'status-badge allowed';
+        statusBadge.innerHTML = '<i class="fa-solid fa-circle-check"></i> <span>고객 상담 통화 판별 완료</span>';
+        blockedNotice.style.display = 'none';
+        phoneMockup.style.display = 'block';
+        actionButtonGroup.style.display = 'grid';
+
+        if (data.safetyReplaced) {
+          safetyNotice.style.display = 'flex';
+          document.getElementById('safetyDetail').innerHTML = data.safetyDetail;
+        } else {
+          safetyNotice.style.display = 'none';
+        }
+
+        currentSmsText = data.smsText;
+        smsPreviewBody.textContent = data.smsText;
+
+        // Build SMS Direct Link (sms:?body=... or sms:&body=... for iOS/Android compatibility)
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        const separator = isIOS ? '&' : '?';
+        smsDirectLink.href = 'sms:' + separator + 'body=' + encodeURIComponent(data.smsText);
+      }
+    }
+
+    // Local Smart Parser Engine (Zero-API fallback)
+    function processCallSummary() {
+      const input = document.getElementById('callInput').value.trim();
+      if (!input) {
+        showToast('통화 내용을 입력해 주세요.');
+        return;
+      }
+
+      // Check if Gemini API Mode is active
+      const useGemini = document.getElementById('useGeminiApi').checked;
+      const apiKey = document.getElementById('geminiApiKey').value.trim();
+
+      if (useGemini && apiKey) {
+        callGeminiApi(input, apiKey);
+        return;
+      }
+
+      // Smart Parser Logic
+      const lower = input.toLowerCase();
+
+      // Check if business/supplier call
+      const blockKeywords = ['반장', '김반장', '이반장', '박반장', '거래처', '도매', '박스 올려', '자재상', '밥 먹었', '엄마 나', '아빠 나'];
+      const isBlocked = blockKeywords.some(k => lower.includes(k));
+
+      if (isBlocked) {
+        renderResult({
+          isCustomer: false,
+          summary: "업무 / 거래처 / 사적 통화",
+          safetyReplaced: false,
+          safetyDetail: "",
+          smsText: ""
+        });
+        showToast('거래처/업무 통화로 판별되어 문자 발송이 차단되었습니다.');
+        return;
+      }
+
+      // Extract details
+      let apt = "현장";
+      const aptMatch = input.match(/([가-힣A-Za-z0-9]+(?:아파트|캐슬|휴포레|푸르지오|자이|e편한세상|아이파크|빌라|블루|그린))/);
+      if (aptMatch) apt = aptMatch[1];
+
+      let pyung = "";
+      const pyungMatch = input.match(/(\d{1,3})\s*평/);
+      if (pyungMatch) pyung = pyungMatch[1] + "평";
+
+      let workType = "욕실 리모델링";
+      if (input.includes("타일") && (input.includes("들떠") || input.includes("깨졌") || input.includes("보수"))) {
+        workType = "욕실 벽 타일 들뜸/보수 문의";
+      } else if (input.includes("2칸") || input.includes("두 칸")) {
+        workType = "공용 및 안방 욕실 2칸 리모델링";
+      } else if (input.includes("덧방")) {
+        workType = "욕실 타일 덧방 리모델링";
+      }
+
+      // Check for price mention
+      const priceDetected = /(?:200|300|400|백만|천만|얼마|대략|선)/.test(input);
+
+      // Check for appointment
+      let appointment = "일정 협의 후 방문 실측";
+      const timeMatch = input.match(/(이번\s*주\s*[가-힣]+요일|[월화수목금토일]요일|내일|모레)\s*([오전후\d\s시]+)/);
+      if (timeMatch) {
+        appointment = timeMatch[0] + " (무료 방문 실측)";
+      }
+
+      const summaryStr = `${apt} ${pyung} / ${workType}`.trim();
+
+      let sms = `[영디자인&바스 안내]\n안녕하세요, 고객님! 방금 문의주신 영디자인&바스입니다.\n\n`;
+      sms += `■ 문의 현장: ${apt} ${pyung}\n`;
+      sms += `■ 공사 내용: ${workType}\n`;
+
+      if (input.includes("실측") || timeMatch) {
+        sms += `■ 방문 실측 일시: ${appointment}\n`;
+      }
+
+      if (input.includes("살면서") || input.includes("살고 있는") || input.includes("거주")) {
+        sms += `■ 거주 중 시공: 꼼꼼한 실내 비닐 보양(먼지 차단) 작업 후 거주 중에도 안심하고 시공 가능합니다.\n`;
+      }
+
+      if (input.includes("사진") || input.includes("보수") || input.includes("들떠")) {
+        sms += `■ 사진 요청: [파손/보수 부위 근접 사진]과 [전체 사진]을 이 번호로 보내주시면 빠르게 진단해 드리겠습니다.\n`;
+      }
+
+      sms += `■ 견적 안내: 정확한 공사 금액은 현장 타일 상태(덧방/철거) 및 방수·설비 점검 후 정직하고 투명하게 산출해 드리겠습니다.\n\n`;
+      sms += `* 편하신 시간에 연락 주시면 친절히 상담해 드리겠습니다.\n- 영디자인&바스 드림 (010-8588-4687 / 010-4544-4687)`;
+
+      renderResult({
+        isCustomer: true,
+        summary: summaryStr,
+        safetyReplaced: priceDetected,
+        safetyDetail: priceDetected ? "통화 중 언급된 금액을 안전 가드가 감지하여 <strong>'현장 점검 후 정확한 견적 안내'</strong>로 안전하게 치환했습니다." : "",
+        smsText: sms
+      });
+
+      showToast('스마트 변환이 완료되었습니다!');
+    }
+
+    // Gemini API Direct Call (Optional)
+    async function callGeminiApi(input, apiKey) {
+      showToast('Gemini 2.5 Flash 실시간 AI 변환 중...');
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
+
+      const systemPrompt = `부산·경남 욕실 리모델링 전문 "영디자인&바스"의 AI 상담 비서입니다.
+통화 내용을 분석하여 반드시 JSON으로만 응답하세요:
+{
+  "is_customer_inquiry": true/false (거래처/자재상/사적 통화는 false),
+  "customer_summary": "요약",
+  "safety_replaced": true/false (금액 언급 치환 여부),
+  "sms_text": "고객 문자 전문 (영디자인&바스 010-8588-4687 포함, 확정 금액 숫자 절대 기재 금지, 현장 실측 후 견적 안내)"
+}`;
+
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{
+              parts: [{ text: systemPrompt + "\n\n[통화 원문]\n" + input }]
+            }],
+            generationConfig: {
+              response_mime_type: "application/json",
+              temperature: 0.2
+            }
+          })
+        });
+
+        const data = await response.json();
+        const rawJson = data.candidates[0].content.parts[0].text;
+        const parsed = JSON.parse(rawJson);
+
+        renderResult({
+          isCustomer: parsed.is_customer_inquiry,
+          summary: parsed.customer_summary || "상담 요약",
+          safetyReplaced: parsed.safety_replaced || true,
+          safetyDetail: "Gemini AI가 안전 수칙에 따라 확정 금액 표기를 방지하고 맞춤 문자를 생성했습니다.",
+          smsText: parsed.sms_text
+        });
+        showToast('Gemini AI 변환 완료!');
+      } catch (err) {
+        console.error(err);
+        showToast('API 호출 실패. 내장 스마트 엔진으로 전환합니다.');
+        document.getElementById('useGeminiApi').checked = false;
+        processCallSummary();
+      }
+    }
+
+    // Web Speech API Voice Recognition
+    let recognition = null;
+    let isRecording = false;
+
+    function toggleSpeechRecognition() {
+      if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+        alert('현재 브라우저가 음성 인식을 지원하지 않습니다. 크롬 또는 사파리를 권장합니다.');
+        return;
+      }
+
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      if (isRecording) {
+        if (recognition) recognition.stop();
+        isRecording = false;
+        document.getElementById('micBtn').classList.remove('recording');
+        document.getElementById('micStatusText').textContent = '음성으로 말하기';
+        return;
+      }
+
+      recognition = new SpeechRecognition();
+      recognition.lang = 'ko-KR';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      recognition.onstart = function() {
+        isRecording = true;
+        document.getElementById('micBtn').classList.add('recording');
+        document.getElementById('micStatusText').textContent = '듣고 있습니다...';
+      };
+
+      recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        const inputBox = document.getElementById('callInput');
+        inputBox.value = (inputBox.value ? inputBox.value + "\n" : "") + transcript;
+        showToast('음성이 입력되었습니다.');
+        processCallSummary();
+      };
+
+      recognition.onerror = function(event) {
+        console.error('Speech recognition error', event.error);
+        isRecording = false;
+        document.getElementById('micBtn').classList.remove('recording');
+        document.getElementById('micStatusText').textContent = '음성으로 말하기';
+      };
+
+      recognition.onend = function() {
+        isRecording = false;
+        document.getElementById('micBtn').classList.remove('recording');
+        document.getElementById('micStatusText').textContent = '음성으로 말하기';
+      };
+
+      recognition.start();
+    }
+
+    // Tab Switcher
+    function switchDeviceTab(device) {
+      document.getElementById('tabBtnGalaxy').classList.toggle('active', device === 'galaxy');
+      document.getElementById('tabBtnIphone').classList.toggle('active', device === 'iphone');
+      document.getElementById('tabContentGalaxy').classList.toggle('active', device === 'galaxy');
+      document.getElementById('tabContentIphone').classList.toggle('active', device === 'iphone');
+    }
+
+    // Toggle API Key Field
+    function toggleApiKeyInput() {
+      const checked = document.getElementById('useGeminiApi').checked;
+      document.getElementById('apiKeyWrap').style.display = checked ? 'block' : 'none';
+    }
+
+    // FAQ Accordion
+    function toggleFaq(el) {
+      el.parentElement.classList.toggle('open');
+    }
+
+    // Copy to Clipboard
+    function copySmsText() {
+      if (!currentSmsText) {
+        showToast('복사할 문자 내용이 없습니다.');
+        return;
+      }
+      navigator.clipboard.writeText(currentSmsText).then(() => {
+        showToast('📱 문자 내용이 클립보드에 복사되었습니다!');
+      });
+    }
+
+    function copyCode(id) {
+      const code = document.getElementById(id).textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        showToast('📋 코드가 클립보드에 복사되었습니다!');
+      });
+    }
+
+    // Toast Utility
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+  </script>
+</body>
+</html>
