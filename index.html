@@ -602,6 +602,35 @@
             font-weight: 500;
         }
 
+        .portfolio-more-wrap {
+            display: flex;
+            justify-content: center;
+            margin-top: 28px;
+        }
+
+        .btn-portfolio-more {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 13px 28px;
+            border-radius: 999px;
+            background: #FFFFFF;
+            color: var(--primary);
+            border: 1.5px solid var(--primary);
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(27, 54, 68, 0.08);
+            transition: all 0.2s ease;
+        }
+
+        .btn-portfolio-more:hover {
+            background: var(--primary);
+            color: #FFFFFF;
+            transform: translateY(-2px);
+        }
+
         /* 5. 주요 시공 안내 3대 카드 */
         .services-section {
             background: var(--bg-warm);
@@ -1261,7 +1290,7 @@
                     </p>
                     <div class="hero-actions">
                         <a href="tel:010-4477-3087" class="btn-call-hero">
-                            📞 대표 바로 전화 상담
+                            📞 바로 전화 상담
                         </a>
                         <a href="sms:010-4477-3087?body=안녕하세요! 영디자인&amp;바스 블로그 보고 욕실/인테리어 시공 상담 문의드립니다." class="btn-sms-hero">
                             💬 문자 상담 남기기
@@ -1308,7 +1337,7 @@
             <!-- 카드 그리드 -->
             <div class="portfolio-grid" id="portfolioGrid">
                 
-        <article class="portfolio-card" data-category="bath">
+        <article class="portfolio-card" data-category="bath" data-index="0">
             <a href="https://blog.naver.com/youngbathsaha30/224450099606" target="_blank" rel="noopener noreferrer" class="portfolio-card-link" aria-label="부산 삼경 아파트 욕실 리모델링 블로그 상세 기록 보기">
                 <div class="portfolio-img-wrap">
                     <img src="assets/portfolio_1.jpg" alt="부산 삼경 아파트 욕실 리모델링" loading="lazy" class="portfolio-img">
@@ -1326,7 +1355,7 @@
         </article>
         
 
-        <article class="portfolio-card" data-category="bath">
+        <article class="portfolio-card" data-category="bath" data-index="1">
             <a href="https://blog.naver.com/youngbathsaha30/224448891002" target="_blank" rel="noopener noreferrer" class="portfolio-card-link" aria-label="부산 대연 힐스테이트 푸르지오 욕실 2칸 리모델링 블로그 상세 기록 보기">
                 <div class="portfolio-img-wrap">
                     <img src="assets/portfolio_2.jpg" alt="부산 대연 힐스테이트 푸르지오 욕실 2칸 리모델링" loading="lazy" class="portfolio-img">
@@ -1344,7 +1373,7 @@
         </article>
         
 
-        <article class="portfolio-card" data-category="all30">
+        <article class="portfolio-card" data-category="all30" data-index="2">
             <a href="https://blog.naver.com/youngbathsaha30/224443750545" target="_blank" rel="noopener noreferrer" class="portfolio-card-link" aria-label="부산 다대 롯데캐슬블루 33평 주방 및 전체 인테리어 블로그 상세 기록 보기">
                 <div class="portfolio-img-wrap">
                     <img src="assets/portfolio_3.jpg" alt="부산 다대 롯데캐슬블루 33평 주방 및 전체 인테리어" loading="lazy" class="portfolio-img">
@@ -1362,7 +1391,7 @@
         </article>
         
 
-        <article class="portfolio-card" data-category="all30">
+        <article class="portfolio-card" data-category="all30" data-index="3">
             <a href="https://blog.naver.com/youngbathsaha30/224442979285" target="_blank" rel="noopener noreferrer" class="portfolio-card-link" aria-label="부산 명륜 SK뷰 1차 33평 라이프스타일 리모델링 블로그 상세 기록 보기">
                 <div class="portfolio-img-wrap">
                     <img src="assets/portfolio_4.jpg" alt="부산 명륜 SK뷰 1차 33평 라이프스타일 리모델링" loading="lazy" class="portfolio-img">
@@ -1380,7 +1409,7 @@
         </article>
         
 
-        <article class="portfolio-card" data-category="etc">
+        <article class="portfolio-card" data-category="etc" data-index="4" style="display: none;">
             <a href="https://blog.naver.com/youngbathsaha30/224418415138" target="_blank" rel="noopener noreferrer" class="portfolio-card-link" aria-label="양산 북정 대동 1차 아파트 인테리어 블로그 상세 기록 보기">
                 <div class="portfolio-img-wrap">
                     <img src="assets/portfolio_5.jpg" alt="양산 북정 대동 1차 아파트 인테리어" loading="lazy" class="portfolio-img">
@@ -1398,7 +1427,7 @@
         </article>
         
 
-        <article class="portfolio-card" data-category="all30">
+        <article class="portfolio-card" data-category="all30" data-index="5" style="display: none;">
             <a href="https://blog.naver.com/youngbathsaha30/224418372809" target="_blank" rel="noopener noreferrer" class="portfolio-card-link" aria-label="부산 광안 더샵 아파트 40평형 모던 리모델링 블로그 상세 기록 보기">
                 <div class="portfolio-img-wrap">
                     <img src="assets/portfolio_6.jpg" alt="부산 광안 더샵 아파트 40평형 모던 리모델링" loading="lazy" class="portfolio-img">
@@ -1416,7 +1445,7 @@
         </article>
         
 
-        <article class="portfolio-card" data-category="all30">
+        <article class="portfolio-card" data-category="all30" data-index="6" style="display: none;">
             <a href="https://blog.naver.com/youngbathsaha30/224384535995" target="_blank" rel="noopener noreferrer" class="portfolio-card-link" aria-label="양산 명동 삼한 사랑채 35평 인테리어 블로그 상세 기록 보기">
                 <div class="portfolio-img-wrap">
                     <img src="assets/portfolio_7.jpg" alt="양산 명동 삼한 사랑채 35평 인테리어" loading="lazy" class="portfolio-img">
@@ -1434,7 +1463,7 @@
         </article>
         
 
-        <article class="portfolio-card" data-category="etc">
+        <article class="portfolio-card" data-category="etc" data-index="7" style="display: none;">
             <a href="https://blog.naver.com/youngbathsaha30/224374143588" target="_blank" rel="noopener noreferrer" class="portfolio-card-link" aria-label="부산 명지 협성 휴포레 24평 D타입 깔끔한 리모델링 블로그 상세 기록 보기">
                 <div class="portfolio-img-wrap">
                     <img src="assets/portfolio_8.jpg" alt="부산 명지 협성 휴포레 24평 D타입 깔끔한 리모델링" loading="lazy" class="portfolio-img">
@@ -1451,6 +1480,13 @@
             </a>
         </article>
         
+            </div>
+
+            <!-- 더보기 / 접기 버튼 (모바일·PC 스크롤 피로도 해소) -->
+            <div class="portfolio-more-wrap" id="portfolioMoreWrap">
+                <button type="button" class="btn-portfolio-more" id="portfolioMoreBtn" onclick="togglePortfolioMore()">
+                    <span id="portfolioMoreText">+ 시공 사례 더보기 (4건)</span>
+                </button>
             </div>
         </div>
     </section>
@@ -1639,8 +1675,8 @@
                 <div class="location-card">
                     <div class="location-card-title">📞 상담 연락처 &amp; 시공 권역</div>
                     <div class="location-card-content">
-                        상담 전화: <strong>010-4477-3087</strong><br>
-                        대표 직통: <strong>010-4564-3792</strong><br><br>
+                        상담·견적 문의: <a href="tel:010-4477-3087" style="color:var(--primary); font-weight:700;">010-4477-3087</a><br>
+                        현장·시공 문의: <a href="tel:010-4564-3792" style="color:var(--primary); font-weight:700;">010-4564-3792</a><br><br>
                         <strong>시공 가능 지역:</strong><br>
                         부산 전 지역 및 부산 인근(양산 등)
                     </div>
@@ -1743,8 +1779,8 @@
 
                 <div>
                     <div style="font-weight:700; color:#FFFFFF; margin-bottom:12px;">고객 상담 안내</div>
-                    <div class="footer-info-item">상담 문의: <a href="tel:010-4477-3087" style="color:#C5A880; font-weight:700;">010-4477-3087</a></div>
-                    <div class="footer-info-item">대표 직통: <a href="tel:010-4564-3792" style="color:#C5A880; font-weight:700;">010-4564-3792</a></div>
+                    <div class="footer-info-item">상담·견적 문의: <a href="tel:010-4477-3087" style="color:#C5A880; font-weight:700;">010-4477-3087</a></div>
+                    <div class="footer-info-item">현장·시공 문의: <a href="tel:010-4564-3792" style="color:#C5A880; font-weight:700;">010-4564-3792</a></div>
                     <div class="footer-info-item" style="margin-top:6px; color:#C5A880; font-weight:600;">방문 전 사전 전화 필수 (상호 시간 조율 후 방문·상담)</div>
                     <div class="footer-info-item">현장 시공 중인 경우가 많아 매장이 비어 있을 수 있습니다. 방문이나 상담 전 미리 전화 주시면 서로 가능한 시간을 맞춰 편하게 안내해 드립니다.</div>
                 </div>
@@ -1782,20 +1818,57 @@
 
     <!-- 인터랙티브 스크립트 -->
     <script>
-        // 1. 포트폴리오 카테고리 탭 필터링
+        // 1. 포트폴리오 카테고리 탭 필터링 및 더보기/접기 제어
+        let currentPortfolioCategory = 'all';
+        let isPortfolioExpanded = false;
+
+        function renderPortfolioCards() {
+            const cards = document.querySelectorAll('.portfolio-card');
+            const moreWrap = document.getElementById('portfolioMoreWrap');
+            const moreText = document.getElementById('portfolioMoreText');
+
+            if (currentPortfolioCategory === 'all') {
+                cards.forEach((card, idx) => {
+                    if (idx < 4 || isPortfolioExpanded) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                if (moreWrap) moreWrap.style.display = 'flex';
+                if (moreText) {
+                    moreText.innerText = isPortfolioExpanded
+                        ? '▲ 시공 사례 접기'
+                        : '+ 시공 사례 더보기 (4건)';
+                }
+            } else {
+                cards.forEach(card => {
+                    if (card.dataset.category === currentPortfolioCategory) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                if (moreWrap) moreWrap.style.display = 'none';
+            }
+        }
+
         function filterPortfolio(category, btn) {
             const buttons = document.querySelectorAll('.tab-btn');
             buttons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            const cards = document.querySelectorAll('.portfolio-card');
-            cards.forEach(card => {
-                if (category === 'all' || card.dataset.category === category) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
+            currentPortfolioCategory = category;
+            renderPortfolioCards();
+        }
+
+        function togglePortfolioMore() {
+            isPortfolioExpanded = !isPortfolioExpanded;
+            renderPortfolioCards();
+            if (!isPortfolioExpanded) {
+                const section = document.getElementById('portfolio');
+                if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
 
         // 2. 간편 상담문구 생성기 상태 관리
