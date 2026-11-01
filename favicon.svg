@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="44" height="44" fill="none">
+    <rect width="48" height="48" rx="12" fill="#1A3038"/>
+    <!-- Bath & Tile Minimal Modern Symbol -->
+    <path d="M12 28C12 21.3726 17.3726 16 24 16C30.6274 16 36 21.3726 36 28" stroke="#C5A880" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M10 28H38C38 33.5228 33.5228 38 28 38H20C14.4772 38 10 33.5228 10 28Z" fill="#C5A880" fill-opacity="0.2" stroke="#C5A880" stroke-width="2.5"/>
+    <circle cx="24" cy="12" r="2.5" fill="#C5A880"/>
+    <path d="M18 38L16 42M30 38L32 42" stroke="#C5A880" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Water Drop Ripple -->
+    <path d="M21 23C21 21.3431 22.3431 20 24 20C25.6569 20 27 21.3431 27 23C27 24.6569 25.6569 26 24 26C22.3431 26 21 24.6569 21 23Z" fill="#FFFFFF"/>
+</svg>
