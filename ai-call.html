@@ -2,9 +2,9 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>영디자인&바스 | AI 통화요약 자동문자 비서</title>
-  <meta name="description" content="통화 후 3초 만에 고객 맞춤 확인 문자를 작성하고 갤럭시 문자창을 바로 엽니다.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>영디자인&바스 | 모바일 통화요약 문자 비서</title>
+  <meta name="description" content="통화 후 3초 만에 고객 맞춤 확인 문자를 작성하고 휴대폰 문자창을 바로 엽니다. 갤럭시·아이폰 공용.">
 
   <!-- Pretendard Font -->
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
@@ -17,21 +17,17 @@
       --primary-light: #1e3a8a;
       --primary-accent: #2563eb;
       --accent: #d97706;        /* 앰버/포인트 */
-      --accent-light: #fef3c7;
       --success: #059669;       /* 확인/성공 */
-      --success-light: #d1fae5;
+      --success-dark: #047857;
       --danger: #dc2626;        /* 차단/경고 */
-      --danger-light: #fee2e2;
       --surface: #ffffff;
-      --bg: #f8fafc;
+      --bg: #f1f5f9;            /* PC 배경 */
       --border: #e2e8f0;
       --text: #1e293b;
       --text-muted: #64748b;
-      --radius-lg: 16px;
-      --radius-md: 12px;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
-      --shadow-md: 0 4px 14px rgba(15, 41, 74, 0.08);
-      --shadow-lg: 0 10px 25px rgba(15, 41, 74, 0.12);
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
     }
 
     * {
@@ -45,275 +41,160 @@
     body {
       background-color: var(--bg);
       color: var(--text);
-      line-height: 1.6;
-      padding: 16px 12px 60px 12px;
+      line-height: 1.5;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
     }
 
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
+    /* 토스/카카오 미니앱 스타일의 순수 모바일 컨테이너 (max-width: 480px) */
+    .mobile-app-frame {
+      width: 100%;
+      max-width: 480px;
+      min-height: 100vh;
+      background-color: var(--surface);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+      padding: 16px 16px 40px 16px;
     }
 
-    /* 헤더 */
-    .header {
+    /* 상단 앱 헤더 */
+    .app-header {
       background: linear-gradient(135deg, var(--primary) 0%, #1e3a8a 100%);
-      color: #fff;
-      padding: 20px 22px;
+      color: #ffffff;
       border-radius: var(--radius-lg);
-      margin-bottom: 16px;
-      box-shadow: var(--shadow-md);
+      padding: 16px 18px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 12px rgba(15, 41, 74, 0.15);
+    }
+
+    .header-top-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
+      margin-bottom: 6px;
     }
 
-    .header-title-box h1 {
-      font-size: 20px;
+    .app-brand {
+      font-size: 17px;
       font-weight: 800;
       display: flex;
       align-items: center;
-      gap: 8px;
-      letter-spacing: -0.5px;
+      gap: 7px;
+      letter-spacing: -0.3px;
     }
 
-    .header-title-box p {
-      font-size: 13px;
-      color: #cbd5e1;
-      margin-top: 4px;
-    }
-
-    .header-badges {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .speed-badge {
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 700;
+    .os-badge {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.35);
       color: #fef08a;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .header-desc {
+      font-size: 12.5px;
+      color: #cbd5e1;
+      line-height: 1.4;
+    }
+
+    .btn-share-link {
       display: inline-flex;
       align-items: center;
       gap: 5px;
-    }
-
-    .btn-settings-toggle {
-      background: rgba(255, 255, 255, 0.15);
-      color: #fff;
+      background: rgba(255, 255, 255, 0.18);
+      color: #ffffff;
       border: 1px solid rgba(255, 255, 255, 0.25);
-      padding: 6px 12px;
       border-radius: 20px;
-      font-size: 12px;
+      padding: 5px 10px;
+      font-size: 11.5px;
       font-weight: 600;
       cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      margin-top: 8px;
       transition: all 0.2s;
     }
 
-    .btn-settings-toggle:hover {
-      background: rgba(255, 255, 255, 0.25);
+    .btn-share-link:active {
+      transform: scale(0.97);
+      background: rgba(255, 255, 255, 0.3);
     }
 
-    /* API 설정 접이식 패널 */
-    .settings-panel {
-      display: none;
+    /* 섹션 공통 카드 */
+    .app-card {
       background: #ffffff;
-      border: 1px solid #cbd5e1;
-      border-radius: var(--radius-md);
-      padding: 16px 18px;
-      margin-bottom: 16px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .settings-panel.active {
-      display: block;
-      animation: fadeIn 0.3s ease;
-    }
-
-    .settings-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .settings-header h3 {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .api-status-badge {
-      font-size: 11px;
-      padding: 3px 8px;
-      border-radius: 12px;
-      font-weight: 600;
-    }
-
-    .api-status-badge.connected {
-      background: var(--success-light);
-      color: var(--success);
-    }
-
-    .api-status-badge.default {
-      background: #f1f5f9;
-      color: var(--text-muted);
-    }
-
-    .settings-desc {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 12px;
-      line-height: 1.5;
-    }
-
-    .api-input-group {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .api-input-group input {
-      flex: 1;
-      min-width: 200px;
-      padding: 9px 12px;
-      font-size: 13px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      outline: none;
-    }
-
-    .api-input-group input:focus {
-      border-color: var(--primary-accent);
-    }
-
-    .btn-sm-primary {
-      background: var(--primary-accent);
-      color: #fff;
-      border: none;
-      padding: 9px 16px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .btn-sm-danger {
-      background: #f1f5f9;
-      color: #64748b;
-      border: 1px solid var(--border);
-      padding: 9px 14px;
-      border-radius: 8px;
-      font-size: 13px;
-      cursor: pointer;
-    }
-
-    /* 원스톱 2컬럼 레이아웃 */
-    .grid-layout {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-
-    @media (max-width: 768px) {
-      .grid-layout {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
+      border: 1.5px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 18px 20px;
-      box-shadow: var(--shadow-sm);
+      padding: 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 8px rgba(15, 41, 74, 0.04);
     }
 
-    .section-title {
-      font-size: 15px;
-      font-weight: 700;
+    .card-title {
+      font-size: 14px;
+      font-weight: 800;
       color: var(--primary);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    /* 🎙️ 마이크 대형 버튼 */
-    .mic-button-wrap {
-      margin-bottom: 14px;
-    }
-
+    /* 🎙️ 마이크 3초 말하기 대형 버튼 */
     .btn-mic-main {
       width: 100%;
       background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
       color: #ffffff;
       border: none;
       border-radius: var(--radius-md);
-      padding: 16px 20px;
+      padding: 15px 16px;
       font-size: 16px;
       font-weight: 800;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+      gap: 10px;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
       transition: all 0.2s ease;
+      margin-bottom: 8px;
     }
 
-    .btn-mic-main:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+    .btn-mic-main:active {
+      transform: scale(0.98);
     }
 
     .btn-mic-main.recording {
       background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
       box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
-      animation: pulseMic 1.5s infinite;
+      animation: pulseMic 1.4s infinite;
     }
 
     @keyframes pulseMic {
       0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.5); }
-      70% { transform: scale(1.02); box-shadow: 0 0 0 12px rgba(220, 38, 38, 0); }
+      70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
       100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
     }
 
-    .mic-status-text {
+    .mic-tip-text {
       text-align: center;
-      font-size: 12px;
+      font-size: 11.5px;
       color: var(--text-muted);
-      margin-top: 6px;
-      font-weight: 500;
+      margin-bottom: 10px;
     }
 
-    .mic-status-text.recording {
+    .mic-tip-text.recording {
       color: var(--danger);
       font-weight: 700;
     }
 
     /* 텍스트 입력창 */
-    .input-textarea-wrap {
-      margin-bottom: 12px;
-      position: relative;
-    }
-
     .call-textarea {
       width: 100%;
-      height: 110px;
-      padding: 12px 14px;
+      height: 95px;
+      padding: 12px;
       font-size: 14px;
       line-height: 1.5;
       color: var(--text);
@@ -321,22 +202,35 @@
       border-radius: var(--radius-md);
       resize: vertical;
       outline: none;
-      transition: border-color 0.2s;
+      background: #fafafa;
+      transition: all 0.2s;
     }
 
     .call-textarea:focus {
       border-color: var(--primary-accent);
+      background: #ffffff;
       box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
     }
 
-    /* 빠른 테스트 예시 버튼 */
-    .quick-examples {
-      margin-bottom: 14px;
+    /* 키보드 마이크 친절 팁 */
+    .keyboard-mic-notice {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      color: #0369a1;
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      padding: 7px 10px;
+      border-radius: 8px;
+      margin: 8px 0 12px 0;
+      line-height: 1.4;
     }
 
-    .quick-examples-label {
-      font-size: 12px;
-      font-weight: 600;
+    /* 빠른 테스트 예시 칩 */
+    .quick-chips-title {
+      font-size: 11.5px;
+      font-weight: 700;
       color: var(--text-muted);
       margin-bottom: 6px;
       display: flex;
@@ -344,37 +238,31 @@
       gap: 4px;
     }
 
-    .chips-grid {
+    .quick-chips-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 6px;
     }
 
-    @media (max-width: 480px) {
-      .chips-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
     .chip-btn {
-      background: #f1f5f9;
+      background: #f8fafc;
       color: #334155;
       border: 1px solid #e2e8f0;
       padding: 8px 10px;
       border-radius: 8px;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 600;
       cursor: pointer;
       text-align: left;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       transition: all 0.15s;
     }
 
-    .chip-btn:hover {
+    .chip-btn:active {
       background: #e2e8f0;
-      color: var(--primary);
+      transform: scale(0.98);
     }
 
     .chip-btn.danger {
@@ -383,139 +271,21 @@
       background: #fef2f2;
     }
 
-    .chip-btn.danger:hover {
-      background: #fee2e2;
-    }
-
-    /* 통화녹음 파일 업로드 박스 */
-    .audio-upload-box {
-      border: 1.5px dashed #cbd5e1;
-      border-radius: var(--radius-md);
-      padding: 14px;
-      background: #f8fafc;
-      margin-bottom: 14px;
-      transition: all 0.2s;
-    }
-
-    .audio-upload-box:hover {
-      border-color: var(--primary-accent);
-      background: #f0f7ff;
-    }
-
-    .upload-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .upload-info {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .upload-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: #e0e7ff;
-      color: #3730a3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 15px;
-    }
-
-    .upload-text h4 {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .upload-text p {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .btn-file-select {
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
-      color: var(--text);
-      padding: 7px 12px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .btn-file-select:hover {
-      background: #f1f5f9;
-    }
-
-    .audio-file-status {
-      display: none;
-      margin-top: 10px;
-      padding-top: 10px;
-      border-top: 1px solid #e2e8f0;
-    }
-
-    .audio-file-status.active {
-      display: block;
-    }
-
-    .audio-file-info {
-      font-size: 12px;
-      color: var(--primary-accent);
-      font-weight: 600;
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .btn-analyze-audio {
-      width: 100%;
-      background: var(--primary);
-      color: #fff;
-      border: none;
-      padding: 9px 12px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      margin-top: 6px;
-    }
-
-    .btn-analyze-audio:hover {
-      background: var(--primary-light);
-    }
-
-    /* 우측: 생성된 문자 결과창 */
+    /* 결과 카드 (생성된 고객 문자) */
     .result-card {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
+      border-color: #cbd5e1;
+      background: #ffffff;
     }
 
     .situation-badge {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 5px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 700;
-      margin-bottom: 10px;
-      width: fit-content;
+      padding: 4px 10px;
+      border-radius: 16px;
+      font-size: 11.5px;
+      font-weight: 800;
+      margin-bottom: 8px;
     }
 
     .badge-as { background: #fee2e2; color: #dc2626; }
@@ -531,24 +301,20 @@
       background: #fef2f2;
       border: 1.5px solid #f87171;
       color: #991b1b;
-      padding: 12px 14px;
-      border-radius: var(--radius-md);
-      margin-bottom: 12px;
-      font-size: 13px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 10px;
+      font-size: 12px;
       line-height: 1.4;
     }
 
     .block-alert-box.active {
       display: flex;
       align-items: flex-start;
-      gap: 8px;
+      gap: 7px;
     }
 
-    /* 고객 전화번호 입력란 */
-    .phone-input-wrap {
-      margin-bottom: 10px;
-    }
-
+    /* 전화번호 입력란 */
     .phone-input {
       width: 100%;
       padding: 9px 12px;
@@ -556,26 +322,21 @@
       border: 1px solid var(--border);
       border-radius: 8px;
       outline: none;
+      margin-bottom: 8px;
+      background: #fafafa;
     }
 
     .phone-input:focus {
       border-color: var(--primary-accent);
+      background: #ffffff;
     }
 
-    /* 문자 출력 텍스트에어리어 */
-    .sms-textarea-wrap {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 12px;
-    }
-
-    .sms-output-textarea {
+    /* 문자 출력창 */
+    .sms-textarea {
       width: 100%;
-      min-height: 200px;
-      flex: 1;
-      padding: 14px;
-      font-size: 14.5px;
+      height: 190px;
+      padding: 12px;
+      font-size: 14px;
       line-height: 1.6;
       color: #0f172a;
       background: #ffffff;
@@ -583,10 +344,10 @@
       border-radius: var(--radius-md);
       resize: vertical;
       outline: none;
-      box-shadow: inset 0 1px 3px rgba(0,0,0,0.03);
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
     }
 
-    .sms-output-textarea:focus {
+    .sms-textarea:focus {
       border-color: var(--primary-accent);
     }
 
@@ -594,58 +355,47 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 12px;
+      font-size: 11.5px;
       color: var(--text-muted);
-      margin-top: 6px;
-      padding: 0 4px;
+      margin-top: 5px;
+      margin-bottom: 12px;
+      padding: 0 2px;
     }
 
     .sms-type-badge {
       font-weight: 700;
       padding: 2px 6px;
       border-radius: 4px;
-      font-size: 11px;
+      font-size: 10.5px;
     }
 
-    .sms-type-badge.sms {
-      background: #e0f2fe;
-      color: #0369a1;
-    }
+    .sms-type-badge.sms { background: #e0f2fe; color: #0369a1; }
+    .sms-type-badge.lms { background: #fef3c7; color: #92400e; }
 
-    .sms-type-badge.lms {
-      background: #fef3c7;
-      color: #92400e;
-    }
-
-    /* 액션 버튼 그룹 */
-    .action-btn-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
+    /* 메인 전송 버튼 (초대형 모바일 터치) */
     .btn-sms-direct {
       width: 100%;
       background: linear-gradient(135deg, #059669 0%, #047857 100%);
       color: #ffffff;
       border: none;
       border-radius: var(--radius-md);
-      padding: 15px 20px;
-      font-size: 16px;
+      padding: 16px;
+      font-size: 16.5px;
       font-weight: 800;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+      box-shadow: 0 4px 14px rgba(5, 150, 105, 0.35);
       transition: all 0.2s;
       text-decoration: none;
+      margin-bottom: 8px;
     }
 
-    .btn-sms-direct:hover {
+    .btn-sms-direct:active {
+      transform: scale(0.98);
       background: linear-gradient(135deg, #047857 0%, #065f46 100%);
-      transform: translateY(-1px);
     }
 
     .btn-copy-sms {
@@ -655,90 +405,58 @@
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 10px;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 600;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
-      transition: all 0.15s;
     }
 
-    .btn-copy-sms:hover {
+    .btn-copy-sms:active {
       background: #e2e8f0;
     }
 
-    .action-guide-tip {
+    .action-tip {
       font-size: 11.5px;
       color: var(--text-muted);
       text-align: center;
-      margin-top: 6px;
+      margin-top: 8px;
       line-height: 1.4;
     }
 
-    /* 하단 가이드 카드 */
-    .guide-section {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 22px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .guide-title {
-      font-size: 16px;
-      font-weight: 800;
-      color: var(--primary);
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .guide-steps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 14px;
-    }
-
-    .step-card {
+    /* 하단 실전 3초 사용 팁 */
+    .tips-card {
       background: #f8fafc;
       border: 1px solid #e2e8f0;
       border-radius: var(--radius-md);
-      padding: 16px;
-      position: relative;
+      padding: 14px;
+      margin-top: 4px;
     }
 
-    .step-num-badge {
-      display: inline-block;
-      background: var(--primary);
-      color: #fff;
-      font-size: 11px;
-      font-weight: 800;
-      padding: 2px 8px;
-      border-radius: 12px;
-      margin-bottom: 8px;
-    }
-
-    .step-num-badge.rec {
-      background: #059669;
-    }
-
-    .step-card h4 {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 6px;
-    }
-
-    .step-card p {
+    .tips-card h4 {
       font-size: 12.5px;
-      color: #475569;
-      line-height: 1.5;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .step-highlight {
+    .tips-card ol {
+      padding-left: 18px;
+      font-size: 11.5px;
+      color: #475569;
+      line-height: 1.6;
+    }
+
+    .tips-card li {
+      margin-bottom: 3px;
+    }
+
+    .highlight {
       font-weight: 700;
       color: var(--primary-accent);
     }
@@ -751,254 +469,165 @@
       transform: translateX(-50%) translateY(100px);
       background: rgba(15, 23, 42, 0.95);
       color: #ffffff;
-      padding: 12px 22px;
+      padding: 11px 20px;
       border-radius: 30px;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 600;
       display: flex;
       align-items: center;
-      gap: 8px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      gap: 7px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
       opacity: 0;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       z-index: 9999;
       pointer-events: none;
+      white-space: nowrap;
     }
 
     .toast-msg.show {
       transform: translateX(-50%) translateY(0);
       opacity: 1;
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
   </style>
 </head>
 <body>
 
-  <div class="container">
+  <!-- 토스/카카오 스타일의 모바일 전용 프레임 (max-width: 480px) -->
+  <div class="mobile-app-frame">
 
     <!-- 상단 헤더 -->
-    <header class="header">
-      <div class="header-title-box">
-        <h1><i class="fa-solid fa-wand-magic-sparkles" style="color: #60a5fa;"></i> 영디자인&바스 AI 통화요약 비서</h1>
-        <p>통화 후 3초 만에 자연스러운 확인 문자를 생성하고 갤럭시 문자창을 바로 엽니다.</p>
+    <header class="app-header">
+      <div class="header-top-row">
+        <div class="app-brand">
+          <i class="fa-solid fa-wand-magic-sparkles" style="color: #60a5fa;"></i>
+          영디자인&바스 모바일 비서
+        </div>
+        <span class="os-badge">📱갤럭시 · 🍎아이폰 공용</span>
       </div>
-      <div class="header-badges">
-        <span class="speed-badge"><i class="fa-solid fa-bolt"></i> 3초 초고속 모드</span>
-        <button type="button" class="btn-settings-toggle" onclick="toggleSettingsPanel()">
-          <i class="fa-solid fa-gear"></i> AI 정밀 설정
-        </button>
+      <div class="header-desc">
+        통화 끝나고 3초 만에 고객 확인 문자를 완성하고 문자창을 바로 엽니다. (API 키 불필요 · 100% 무료)
       </div>
+      <button type="button" class="btn-share-link" onclick="copyAppUrl()">
+        <i class="fa-solid fa-link"></i> 내 휴대폰으로 이 화면 열기 (링크 복사)
+      </button>
     </header>
 
-    <!-- Gemini API 접이식 설정 패널 -->
-    <div id="settings-panel" class="settings-panel">
-      <div class="settings-header">
-        <h3><i class="fa-solid fa-brain" style="color: #6366f1;"></i> Gemini 2.5 Flash 정밀 AI 설정 (선택사항)</h3>
-        <span id="api-status-badge" class="api-status-badge default">⚪ 기본 고속 엔진 (무료 즉시 사용)</span>
+    <!-- 1단계: 통화 내용 입력 (음성 또는 직접 타이핑) -->
+    <section class="app-card">
+      <div class="card-title">
+        <span><i class="fa-solid fa-microphone-lines" style="color: var(--primary-accent);"></i> 통화 내용 입력</span>
+        <span style="font-size: 11px; color: var(--text-muted); font-weight: 500;">말하거나 직접 입력</span>
       </div>
-      <p class="settings-desc">
-        무료 Gemini API 키를 등록하시면 통화녹음 음성파일(.m4a)을 AI가 직접 듣고 대화 맥락을 정밀하게 분석합니다.<br>
-        (※ 키가 없어도 내장된 초고속 로컬 규칙 엔진으로 100% 무료 즉시 작동합니다.)
-        <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color: var(--primary-accent); margin-left: 6px; font-weight: 600;">Google AI Studio 무료 키 받기 →</a>
-      </p>
-      <div class="api-input-group">
-        <input type="password" id="gemini-api-key-input" placeholder="Gemini API 키를 여기에 입력하세요 (AIza...)" autocomplete="off">
-        <button type="button" class="btn-sm-primary" onclick="saveGeminiApiKey()"><i class="fa-solid fa-check"></i> 키 저장</button>
-        <button type="button" class="btn-sm-danger" onclick="clearGeminiApiKey()">초기화</button>
+
+      <!-- 🎙️ 마이크로 3초 말하기 대형 버튼 -->
+      <button type="button" id="btn-mic" class="btn-mic-main" onclick="toggleSpeechRecognition()">
+        <i class="fa-solid fa-microphone fa-lg"></i>
+        <span id="mic-btn-label">🎙️ 마이크 누르고 3초 말하기</span>
+      </button>
+      <div id="mic-status-text" class="mic-tip-text">버튼을 누르고 방금 통화 내용을 편하게 말씀해 주세요.</div>
+
+      <!-- 텍스트 입력창 -->
+      <textarea id="call-input-text" class="call-textarea"
+        placeholder="말씀하신 내용이 여기에 실시간으로 기록됩니다. 직접 타이핑하셔도 됩니다.&#10;예: '고객님이 싱크대 실리콘 들떠서 물 샌다고 불만이 많으신데 내일 오후 2시에 방문하기로 했어'"
+        oninput="handleCallTextInput()"></textarea>
+
+      <!-- 키보드 마이크 팁 안내 (아이폰/갤럭시 공용) -->
+      <div class="keyboard-mic-notice">
+        <i class="fa-solid fa-lightbulb" style="color: #0284c7;"></i>
+        <span>💡 <strong>팁:</strong> 아이폰·갤럭시 키보드에 있는 기본 마이크(🎙️) 버튼을 눌러 말하셔도 바로 글자로 입력됩니다!</span>
       </div>
-    </div>
 
-    <!-- 메인 원스톱 그리드 레이아웃 -->
-    <main class="grid-layout">
-
-      <!-- 좌측 컬럼: 통화 내용 입력 (음성 / 텍스트 / 녹음파일) -->
-      <section class="card">
-        <div class="section-title">
-          <span><i class="fa-solid fa-microphone-lines" style="color: var(--primary-accent);"></i> 통화 내용 입력</span>
-          <span style="font-size: 11px; color: var(--text-muted); font-weight: 500;">말하거나 직접 타이핑</span>
-        </div>
-
-        <!-- 🎙️ 마이크로 3초 말하기 대형 버튼 -->
-        <div class="mic-button-wrap">
-          <button type="button" id="btn-mic" class="btn-mic-main" onclick="toggleSpeechRecognition()">
-            <i class="fa-solid fa-microphone fa-lg"></i>
-            <span id="mic-btn-label">🎙️ 마이크로 3초 말하기</span>
-          </button>
-          <div id="mic-status-text" class="mic-status-text">버튼을 누르고 방금 통화 내용을 편하게 말씀해 주세요.</div>
-        </div>
-
-        <!-- 통화 내용 직접 입력창 -->
-        <div class="input-textarea-wrap">
-          <textarea id="call-input-text" class="call-textarea"
-            placeholder="말씀하신 내용이 여기에 실시간으로 기록됩니다. 직접 타이핑하셔도 됩니다.&#10;예: '고객님이 싱크대 실리콘 들떠서 물 샌다고 불만이 많으신데 내일 오후 2시에 방문해서 봐드리기로 했어'"
-            oninput="handleCallTextInput()"></textarea>
-        </div>
-
-        <!-- 빠른 테스트 예시 4개 버튼 -->
-        <div class="quick-examples">
-          <div class="quick-examples-label"><i class="fa-solid fa-hand-pointer"></i> 빠른 예시 테스트 (원클릭)</div>
-          <div class="chips-grid">
-            <button type="button" class="chip-btn" onclick="loadQuickExample('as')">
-              <i class="fa-solid fa-triangle-exclamation" style="color: #dc2626;"></i> ① AS/불만 방문 약속
-            </button>
-            <button type="button" class="chip-btn" onclick="loadQuickExample('quote')">
-              <i class="fa-solid fa-calculator" style="color: #2563eb;"></i> ② 견적·실측 방문 약속
-            </button>
-            <button type="button" class="chip-btn" onclick="loadQuickExample('photo')">
-              <i class="fa-solid fa-camera" style="color: #d97706;"></i> ③ 타일 보수 사진 요청
-            </button>
-            <button type="button" class="chip-btn danger" onclick="loadQuickExample('blocked')">
-              <i class="fa-solid fa-ban" style="color: #dc2626;"></i> ④ 자재상 통화 (차단)
-            </button>
-          </div>
-        </div>
-
-        <!-- 갤럭시 통화녹음 파일(.m4a) 올리기 카드 -->
-        <div class="audio-upload-box">
-          <div class="upload-inner">
-            <div class="upload-info">
-              <div class="upload-icon"><i class="fa-solid fa-file-audio"></i></div>
-              <div class="upload-text">
-                <h4>갤럭시 통화녹음 파일(.m4a)</h4>
-                <p>통화 후 자동 저장된 녹음 파일을 올리실 수 있습니다.</p>
-              </div>
-            </div>
-            <label class="btn-file-select">
-              <i class="fa-solid fa-folder-open"></i> 파일 선택
-              <input type="file" id="audio-file-input" accept="audio/*,.m4a,.mp3,.wav,.ogg,.webm" style="display: none;" onchange="handleAudioFileSelected(event)">
-            </label>
-          </div>
-
-          <div id="audio-file-status" class="audio-file-status">
-            <div class="audio-file-info" id="audio-file-name"><i class="fa-solid fa-music"></i> 파일명</div>
-            <audio id="audio-preview-player" controls style="width: 100%; height: 32px; margin-top: 4px;"></audio>
-            <button type="button" id="btn-analyze-audio" class="btn-analyze-audio" onclick="analyzeAudioWithGemini()">
-              <i class="fa-solid fa-brain"></i> 🤖 Gemini AI로 녹음 파일 분석하여 문자 생성
-            </button>
-          </div>
-        </div>
-
-        <!-- 즉시 재생성 버튼 -->
-        <button type="button" class="btn-copy-sms" onclick="generateSmsNow()" style="background: #e2e8f0; font-weight: 700;">
-          <i class="fa-solid fa-rotate-right"></i> 입력 내용으로 문자 즉시 생성
+      <!-- 빠른 테스트 예시 칩 4종 -->
+      <div class="quick-chips-title">
+        <i class="fa-solid fa-hand-pointer"></i> 빠른 예시 테스트 (원클릭)
+      </div>
+      <div class="quick-chips-grid">
+        <button type="button" class="chip-btn" onclick="loadQuickExample('as')">
+          <i class="fa-solid fa-triangle-exclamation" style="color: #dc2626;"></i> ① AS/불만 약속
         </button>
-
-      </section>
-
-      <!-- 우측 컬럼: 생성된 문자 및 갤럭시 전송 -->
-      <section class="card result-card">
-        <div class="section-title">
-          <span><i class="fa-solid fa-paper-plane" style="color: var(--success);"></i> 생성된 고객 문자</span>
-          <span style="font-size: 11px; color: var(--text-muted); font-weight: 500;">직접 수정 가능</span>
-        </div>
-
-        <!-- 감지된 상황 뱃지 -->
-        <div id="situation-badge" class="situation-badge badge-quote">
-          <i class="fa-solid fa-tag"></i> <span id="situation-badge-text">📐 견적 / 방문 실측 약속</span>
-        </div>
-
-        <!-- 차단 알림 배너 -->
-        <div id="block-alert-box" class="block-alert-box">
-          <i class="fa-solid fa-circle-exclamation fa-lg" style="margin-top: 2px;"></i>
-          <div>
-            <strong>내부 협력업체/자재상 통화 감지</strong><br>
-            자재 발주 또는 현장 반장님 통화로 감지되어 고객 발송 문자를 생성하지 않습니다.
-          </div>
-        </div>
-
-        <!-- 고객 전화번호 입력 (선택) -->
-        <div class="phone-input-wrap">
-          <input type="tel" id="customer-phone-input" class="phone-input"
-            placeholder="고객 전화번호 (선택: 입력 시 갤럭시 문자창에 수신번호 자동 채움)"
-            oninput="updateDirectSmsLink()">
-        </div>
-
-        <!-- 문자 내용 편집창 -->
-        <div class="sms-textarea-wrap">
-          <textarea id="sms-result-text" class="sms-output-textarea"
-            placeholder="통화 내용을 말씀하시거나 입력하시면 여기에 자연스러운 고객 확인 문자가 생성됩니다."
-            oninput="handleSmsResultEdited()"></textarea>
-
-          <div class="sms-meta-row">
-            <div>
-              <span id="sms-type-badge" class="sms-type-badge sms">SMS 단문</span>
-              <span id="sms-byte-count" style="margin-left: 6px;">0 Byte / 90 Byte</span>
-            </div>
-            <div>
-              <span id="sms-char-count">0자</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 액션 버튼 -->
-        <div class="action-btn-group">
-          <a id="btn-direct-sms" href="javascript:void(0)" class="btn-sms-direct" onclick="triggerOpenSmsApp()">
-            <i class="fa-solid fa-comment-sms fa-lg"></i>
-            <span>📲 갤럭시 문자창 바로 열기</span>
-          </a>
-
-          <button type="button" class="btn-copy-sms" onclick="copySmsText()">
-            <i class="fa-solid fa-copy"></i> 문자 내용 복사하기
-          </button>
-
-          <p class="action-guide-tip">
-            ※ [문자창 바로 열기]를 누르면 스마트폰 기본 문자 앱이 열리고 내용이 바로 채워집니다. 확인 후 전송만 누르시면 됩니다!
-          </p>
-        </div>
-
-      </section>
-
-    </main>
-
-    <!-- 하단: 갤럭시 스마트폰 1분 사용법 가이드 -->
-    <section class="guide-section">
-      <div class="guide-title">
-        <i class="fa-solid fa-mobile-screen-button" style="color: var(--primary-accent);"></i>
-        갤럭시 스마트폰 1분 사용법 (초간단 실전 팁)
-      </div>
-
-      <div class="guide-steps-grid">
-
-        <!-- 1단계 -->
-        <div class="step-card">
-          <span class="step-num-badge rec">가장 쉬운 방법 (추천)</span>
-          <h4>🎙️ 통화 직후 3초 말하기</h4>
-          <p>
-            고객과 통화가 끝나면 이 화면에서 <span class="step-highlight">[마이크로 3초 말하기]</span>를 누르고 <i>"고객이 불만사항 얘기해서 내일 방문하기로 했어"</i>처럼 한마디만 하세요.<br>
-            문자가 즉시 완성되므로 <span class="step-highlight">[📲 갤럭시 문자창 열기]</span>만 누르면 끝납니다.
-          </p>
-        </div>
-
-        <!-- 2단계 -->
-        <div class="step-card">
-          <span class="step-num-badge">10초 세팅</span>
-          <h4>📂 통화 자동 녹음 켜기</h4>
-          <p>
-            갤럭시 기본 <span class="step-highlight">[전화]</span> 앱 열기 → 우측 상단 <span class="step-highlight">점 3개(⋮)</span> → <span class="step-highlight">[설정]</span> → <span class="step-highlight">[통화 녹음]</span> → <span class="step-highlight">[통화 자동 녹음]</span> 켜기!<br>
-            켜두시면 중요한 통화 후 녹음 파일(.m4a)을 올려 더 정밀한 AI 분석을 받으실 수 있습니다.
-          </p>
-        </div>
-
-        <!-- 3단계 -->
-        <div class="step-card">
-          <span class="step-num-badge">앱처럼 1초 실행</span>
-          <h4>📱 스마트폰 홈 화면에 추가</h4>
-          <p>
-            삼성 인터넷 또는 크롬 브라우저 메뉴(<span class="step-highlight">⋮</span> 또는 <span class="step-highlight">≡</span>)를 누르고 <span class="step-highlight">[홈 화면에 추가]</span>를 터치하세요.<br>
-            바탕화면에 앱 아이콘처럼 설치되어 언제든 1초 만에 실행할 수 있습니다.
-          </p>
-        </div>
-
+        <button type="button" class="chip-btn" onclick="loadQuickExample('quote')">
+          <i class="fa-solid fa-calculator" style="color: #2563eb;"></i> ② 견적·실측 약속
+        </button>
+        <button type="button" class="chip-btn" onclick="loadQuickExample('photo')">
+          <i class="fa-solid fa-camera" style="color: #d97706;"></i> ③ 타일 사진 요청
+        </button>
+        <button type="button" class="chip-btn danger" onclick="loadQuickExample('blocked')">
+          <i class="fa-solid fa-ban" style="color: #dc2626;"></i> ④ 자재상 (차단)
+        </button>
       </div>
     </section>
 
+    <!-- 2단계: 생성된 고객 확인 문자 및 휴대폰 전송 -->
+    <section class="app-card result-card">
+      <div class="card-title">
+        <span><i class="fa-solid fa-paper-plane" style="color: var(--success);"></i> 완성된 고객 확인 문자</span>
+        <span style="font-size: 11px; color: var(--text-muted); font-weight: 500;">직접 수정 가능</span>
+      </div>
+
+      <!-- 상황 뱃지 -->
+      <div id="situation-badge" class="situation-badge badge-quote">
+        <i class="fa-solid fa-tag"></i> <span id="situation-badge-text">📐 견적 / 방문 실측 약속</span>
+      </div>
+
+      <!-- 자재상/협력업체 발송 차단 알림 배너 -->
+      <div id="block-alert-box" class="block-alert-box">
+        <i class="fa-solid fa-circle-exclamation fa-lg" style="margin-top: 1px;"></i>
+        <div>
+          <strong>내부 협력업체/자재상 통화 감지</strong><br>
+          자재 발주 또는 현장 반장님 통화로 감지되어 고객 발송 문자를 생성하지 않습니다.
+        </div>
+      </div>
+
+      <!-- 고객 전화번호 (선택사항) -->
+      <input type="tel" id="customer-phone-input" class="phone-input"
+        placeholder="고객 전화번호 (선택: 입력 시 문자창에 번호 자동 채움)"
+        oninput="updateDirectSmsLink()">
+
+      <!-- 문자 내용 확인 및 수정 창 -->
+      <textarea id="sms-result-text" class="sms-textarea"
+        placeholder="통화 내용을 말씀하시거나 입력하시면 여기에 자연스러운 고객 확인 문자가 생성됩니다."
+        oninput="handleSmsResultEdited()"></textarea>
+
+      <!-- 글자수 / 바이트수 메타 -->
+      <div class="sms-meta-row">
+        <div>
+          <span id="sms-type-badge" class="sms-type-badge sms">SMS 단문</span>
+          <span id="sms-byte-count" style="margin-left: 5px;">0 Byte / 90 Byte</span>
+        </div>
+        <div>
+          <span id="sms-char-count">0자</span>
+        </div>
+      </div>
+
+      <!-- 메인 전송 버튼 (휴대폰 기본 문자앱 바로 실행) -->
+      <a id="btn-direct-sms" href="javascript:void(0)" class="btn-sms-direct" onclick="triggerOpenSmsApp()">
+        <i class="fa-solid fa-comment-sms fa-lg"></i>
+        <span>💬 내 휴대폰 문자창 바로 열기</span>
+      </a>
+
+      <!-- 보조 복사 버튼 -->
+      <button type="button" class="btn-copy-sms" onclick="copySmsText()">
+        <i class="fa-solid fa-copy"></i> 문자 내용 복사하기
+      </button>
+
+      <p class="action-tip">
+        ※ 버튼을 누르면 갤럭시/아이폰 기본 문자창이 열리고 내용이 자동으로 채워집니다. 확인 후 <strong>[전송]</strong>만 누르시면 됩니다!
+      </p>
+    </section>
+
+    <!-- 3단계: 초간단 10초 사용 팁 -->
+    <div class="tips-card">
+      <h4><i class="fa-solid fa-lightbulb" style="color: #d97706;"></i> 초간단 10초 실전 팁</h4>
+      <ol>
+        <li>고객 통화 끝나고 <span class="highlight">[마이크 누르고 3초 말하기]</span> (또는 자판 마이크)로 통화 내용을 편하게 말합니다.</li>
+        <li>문자가 만들어지면 <span class="highlight">[💬 내 휴대폰 문자창 바로 열기]</span> 터치 후 문자 앱에서 <strong>[전송]</strong>만 누르면 끝납니다!</li>
+        <li>아이폰(사파리) 또는 갤럭시(크롬/삼성인터넷) 메뉴에서 <strong>[홈 화면에 추가]</strong>를 누르면 바탕화면에 진짜 앱처럼 저장되어 1초 만에 열 수 있습니다.</li>
+      </ol>
+    </div>
+
   </div>
 
-  <!-- 토스트 메시지 -->
+  <!-- 토스트 알림 메시지 -->
   <div id="toast-msg" class="toast-msg">
     <i class="fa-solid fa-circle-check" style="color: #4ade80;"></i>
     <span id="toast-text">복사되었습니다.</span>
@@ -1006,66 +635,38 @@
 
   <script>
     /* =========================================================================
-       영디자인&바스 AI 통화요약 시스템 (Smart Context Engine + Gemini 2.5 Flash)
+       영디자인&바스 모바일 문자 비서 (갤럭시 & 아이폰 공용 Smart Engine)
        ========================================================================= */
 
     const APP_CONFIG = {
       defaultPhone: '010-4477-3087',
       brandName: '영디자인&바스',
-      storageKey: 'ydb_gemini_api_key'
+      appUrl: 'https://fillestar.github.io/youngdesign-bath/ai-call.html'
     };
 
     let recognition = null;
     let isRecognizing = false;
-    let selectedAudioFile = null;
 
-    // DOM Ready
     document.addEventListener('DOMContentLoaded', () => {
-      initApiKey();
       initSpeechRecognition();
-      // 초기 기본 예시 로드
+      // 초기 기본 예시 자동 로드
       loadQuickExample('quote');
     });
 
     /* =========================================================================
-       1. Gemini API 키 설정 관리
+       1. 링크 복사 (내 휴대폰으로 이 화면 열기)
        ========================================================================= */
-    function toggleSettingsPanel() {
-      const panel = document.getElementById('settings-panel');
-      panel.classList.toggle('active');
-    }
-
-    function initApiKey() {
-      const savedKey = localStorage.getItem(APP_CONFIG.storageKey);
-      const badge = document.getElementById('api-status-badge');
-      const input = document.getElementById('gemini-api-key-input');
-      if (savedKey) {
-        input.value = savedKey;
-        badge.className = 'api-status-badge connected';
-        badge.innerHTML = '🟢 Gemini AI 연동됨 (녹음파일 분석 가능)';
+    function copyAppUrl() {
+      const url = APP_CONFIG.appUrl;
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(url).then(() => {
+          showToast('🔗 모바일 주소가 복사되었습니다! 카톡에 붙여넣어 열어보세요.');
+        }).catch(() => {
+          fallbackCopyText(url, '🔗 모바일 주소가 복사되었습니다!');
+        });
       } else {
-        badge.className = 'api-status-badge default';
-        badge.innerHTML = '⚪ 기본 고속 엔진 (무료 즉시 사용)';
+        fallbackCopyText(url, '🔗 모바일 주소가 복사되었습니다!');
       }
-    }
-
-    function saveGeminiApiKey() {
-      const input = document.getElementById('gemini-api-key-input');
-      const key = input.value.trim();
-      if (!key) {
-        showToast('⚠️ API 키를 입력해 주세요.');
-        return;
-      }
-      localStorage.setItem(APP_CONFIG.storageKey, key);
-      initApiKey();
-      showToast('✅ Gemini API 키가 저장되었습니다.');
-    }
-
-    function clearGeminiApiKey() {
-      localStorage.removeItem(APP_CONFIG.storageKey);
-      document.getElementById('gemini-api-key-input').value = '';
-      initApiKey();
-      showToast('초기화되었습니다. 기본 엔진으로 전환됩니다.');
     }
 
     /* =========================================================================
@@ -1073,10 +674,7 @@
        ========================================================================= */
     function initSpeechRecognition() {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      if (!SpeechRecognition) {
-        console.warn('현재 브라우저는 Web Speech API를 지원하지 않습니다.');
-        return;
-      }
+      if (!SpeechRecognition) return;
 
       recognition = new SpeechRecognition();
       recognition.lang = 'ko-KR';
@@ -1088,8 +686,8 @@
         const btn = document.getElementById('btn-mic');
         btn.classList.add('recording');
         document.getElementById('mic-btn-label').innerText = '듣고 있습니다... 말씀해 주세요';
-        document.getElementById('mic-status-text').className = 'mic-status-text recording';
-        document.getElementById('mic-status-text').innerText = '🔴 통화 내용을 말씀하시면 실시간으로 기록됩니다...';
+        document.getElementById('mic-status-text').className = 'mic-tip-text recording';
+        document.getElementById('mic-status-text').innerText = '🔴 통화 내용을 편하게 말씀하세요...';
       };
 
       recognition.onresult = (event) => {
@@ -1108,9 +706,9 @@
         console.error('Speech recognition error:', event.error);
         stopSpeechRecognition();
         if (event.error === 'not-allowed') {
-          showToast('⚠️ 마이크 사용 권한이 차단되었습니다. 권한을 허용해 주세요.');
+          showToast('⚠️ 마이크 권한이 차단되었습니다. 키보드 마이크(🎙️)를 사용하세요.');
         } else {
-          showToast('음성 인식 안내: 직접 타이핑하셔도 문자가 완성됩니다.');
+          showToast('💡 키보드의 마이크(🎙️)를 눌러 말씀하셔도 바로 입력됩니다.');
         }
       };
 
@@ -1121,7 +719,7 @@
 
     function toggleSpeechRecognition() {
       if (!recognition) {
-        showToast('⚠️ 크롬/삼성 인터넷 브라우저에서 마이크를 사용하실 수 있습니다.');
+        showToast('💡 키보드에 있는 마이크(🎙️)를 눌러 말씀하셔도 글자로 입력됩니다!');
         return;
       }
       if (isRecognizing) {
@@ -1140,8 +738,8 @@
       isRecognizing = false;
       const btn = document.getElementById('btn-mic');
       btn.classList.remove('recording');
-      document.getElementById('mic-btn-label').innerText = '🎙️ 마이크로 3초 말하기';
-      document.getElementById('mic-status-text').className = 'mic-status-text';
+      document.getElementById('mic-btn-label').innerText = '🎙️ 마이크 누르고 3초 말하기';
+      document.getElementById('mic-status-text').className = 'mic-tip-text';
       document.getElementById('mic-status-text').innerText = '버튼을 누르고 방금 통화 내용을 편하게 말씀해 주세요.';
     }
 
@@ -1154,13 +752,7 @@
       debounceTimer = setTimeout(() => {
         const text = document.getElementById('call-input-text').value;
         parseTextAndGenerate(text);
-      }, 200);
-    }
-
-    function generateSmsNow() {
-      const text = document.getElementById('call-input-text').value;
-      parseTextAndGenerate(text);
-      showToast('문자가 새로 생성되었습니다.');
+      }, 150);
     }
 
     function loadQuickExample(type) {
@@ -1193,7 +785,7 @@
 
       const lower = rawText.toLowerCase();
 
-      // [상황 F: 협력업체 / 자재상 / 내부 통화 차단]
+      // [상황 F: 협력업체 / 자재상 내부 통화 차단]
       const blockWords = ['반장님', '자재상', '방수액', '모래', '압착시멘트', '압착', '타일본드', '도매', '납품', '사다놓', '발주', '기공', '조공', '경남타일'];
       const isBlocked = blockWords.some(k => lower.includes(k));
       if (isBlocked) {
@@ -1213,7 +805,7 @@
         schedule = timeMatch[0].trim();
       }
 
-      // 시공 부위 및 아파트명 추출
+      // 아파트/현장명 추출
       const aptMatch = rawText.match(/([가-힣A-Za-z0-9]+(?:아파트|캐슬|푸르지오|자이|e편한세상|이편한세상|힐스테이트|아이파크|래미안|롯데캐슬|sk뷰|SK뷰|포레나|더샵|빌라|오피스텔|마을|단지))/);
       const sitePrefix = aptMatch ? `${aptMatch[1]} ` : '';
 
@@ -1331,7 +923,7 @@
     }
 
     /* =========================================================================
-       5. UI 렌더링 및 문자 상태 업데이트
+       5. UI 렌더링 및 모바일 문자링크(iOS & Android 스마트 분기)
        ========================================================================= */
     function renderResultState({ isBlocked, situationTitle, badgeClass, messageText }) {
       const blockBox = document.getElementById('block-alert-box');
@@ -1392,6 +984,18 @@
       }
     }
 
+    function getSmartSmsUri(phone, bodyText) {
+      const encodedBody = encodeURIComponent(bodyText);
+      const isIOS = /(iPhone|iPad|iPod)/i.test(navigator.userAgent);
+
+      if (phone) {
+        // 아이폰과 안드로이드 규격 맞춤
+        return isIOS ? `sms:${phone}&body=${encodedBody}` : `sms:${phone}?body=${encodedBody}`;
+      } else {
+        return isIOS ? `sms:&body=${encodedBody}` : `sms:?body=${encodedBody}`;
+      }
+    }
+
     function updateDirectSmsLink() {
       const phone = document.getElementById('customer-phone-input').value.replace(/[^0-9]/g, '');
       const text = document.getElementById('sms-result-text').value;
@@ -1402,15 +1006,7 @@
         return;
       }
 
-      const encodedBody = encodeURIComponent(text);
-      const isAndroid = /Android/i.test(navigator.userAgent);
-
-      let uri = '';
-      if (phone) {
-        uri = `sms:${phone}?body=${encodedBody}`;
-      } else {
-        uri = isAndroid ? `sms:?body=${encodedBody}` : `sms:&body=${encodedBody}`;
-      }
+      const uri = getSmartSmsUri(phone, text);
       directBtn.setAttribute('href', uri);
     }
 
@@ -1420,12 +1016,11 @@
         showToast('⚠️ 전송할 문자 내용이 없습니다.');
         return;
       }
-      updateDirectSmsLink();
-      const href = document.getElementById('btn-direct-sms').getAttribute('href');
-      if (href && href !== 'javascript:void(0)') {
-        window.location.href = href;
-        showToast('📲 문자 앱을 열었습니다. 확인 후 전송하세요!');
-      }
+
+      const phone = document.getElementById('customer-phone-input').value.replace(/[^0-9]/g, '');
+      const uri = getSmartSmsUri(phone, text);
+      window.location.href = uri;
+      showToast('📲 문자 앱이 열립니다. 내용 확인 후 전송하세요!');
     }
 
     function copySmsText() {
@@ -1439,14 +1034,14 @@
         navigator.clipboard.writeText(text).then(() => {
           showToast('📋 문자 내용이 복사되었습니다!');
         }).catch(() => {
-          fallbackCopyText(text);
+          fallbackCopyText(text, '📋 문자 내용이 복사되었습니다!');
         });
       } else {
-        fallbackCopyText(text);
+        fallbackCopyText(text, '📋 문자 내용이 복사되었습니다!');
       }
     }
 
-    function fallbackCopyText(text) {
+    function fallbackCopyText(text, successMsg) {
       const ta = document.createElement('textarea');
       ta.value = text;
       ta.style.position = 'fixed';
@@ -1455,141 +1050,15 @@
       ta.select();
       try {
         document.execCommand('copy');
-        showToast('📋 문자 내용이 복사되었습니다!');
+        showToast(successMsg);
       } catch (err) {
-        showToast('복사에 실패했습니다. 텍스트를 직접 복사해 주세요.');
+        showToast('복사에 실패했습니다. 직접 복사해 주세요.');
       }
       document.body.removeChild(ta);
     }
 
     /* =========================================================================
-       6. 갤럭시 통화녹음 파일(.m4a) 및 Gemini 2.5 Flash API 연동
-       ========================================================================= */
-    function handleAudioFileSelected(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-
-      selectedAudioFile = file;
-      const statusBox = document.getElementById('audio-file-status');
-      const nameBox = document.getElementById('audio-file-name');
-      const player = document.getElementById('audio-preview-player');
-
-      statusBox.classList.add('active');
-      const sizeMb = (file.size / (1024 * 1024)).toFixed(1);
-      nameBox.innerHTML = `<i class="fa-solid fa-file-audio"></i> ${file.name} (${sizeMb} MB)`;
-
-      const fileUrl = URL.createObjectURL(file);
-      player.src = fileUrl;
-
-      showToast(`통화녹음 파일이 로드되었습니다: ${file.name}`);
-    }
-
-    async function analyzeAudioWithGemini() {
-      if (!selectedAudioFile) {
-        showToast('⚠️ 분석할 오디오 파일을 먼저 선택해 주세요.');
-        return;
-      }
-
-      const apiKey = localStorage.getItem(APP_CONFIG.storageKey);
-      if (!apiKey) {
-        toggleSettingsPanel();
-        showToast('💡 녹음 파일 AI 분석을 위해 Gemini 무료 API 키를 먼저 입력해 주세요.');
-        return;
-      }
-
-      const btn = document.getElementById('btn-analyze-audio');
-      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Gemini AI가 통화 녹음을 듣고 분석 중입니다...';
-      btn.disabled = true;
-
-      try {
-        const base64Audio = await fileToBase64(selectedAudioFile);
-        const mimeType = selectedAudioFile.type || 'audio/m4a';
-
-        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
-
-        const payload = {
-          system_instruction: {
-            parts: [{
-              text: "당신은 부산 인테리어 업체 '영디자인&바스'의 고객 응대 비서입니다. 통화 녹음이나 메모를 바탕으로 고객에게 보낼 자연스럽고 정중한 확인 문자를 작성하세요. 광고 링크(홈페이지/블로그)나 딱딱한 기호(■)를 쓰지 말고, 통화에서 실제로 나눈 이야기(불만/AS면 정중한 사과와 방문 점검 약속, 견적 문의면 방문 실측 약속, 일정 조율이면 변경 일정 확인)만 진심 어린 사람 말투로 4~6줄 이내로 작성하세요. 통화 내용에 없는 공사명을 절대 지어내지 마세요. 발신인 서명은 '- 영디자인&바스 드림 (010-4477-3087)'으로 마무리하세요. 만약 고객 통화가 아니라 자재상이나 작업 반장님과의 내부 통화라면 오직 'INTERNAL_CALL_BLOCKED'라고만 답변하세요."
-            }]
-          },
-          contents: [{
-            parts: [
-              {
-                inline_data: {
-                  mime_type: mimeType,
-                  data: base64Audio
-                }
-              },
-              {
-                text: "첨부된 통화 녹음 오디오를 분석하여 고객에게 보낼 확인 문자를 작성해 주세요."
-              }
-            ]
-          }]
-        };
-
-        const res = await fetch(endpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        if (!res.ok) {
-          throw new Error(`API 호출 실패: HTTP ${res.status}`);
-        }
-
-        const data = await res.json();
-        const replyText = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
-
-        if (!replyText) {
-          throw new Error('응답 내용이 비어 있습니다.');
-        }
-
-        if (replyText.trim() === 'INTERNAL_CALL_BLOCKED') {
-          renderResultState({
-            isBlocked: true,
-            situationTitle: '🛑 협력업체 통화 (발송 차단)',
-            badgeClass: 'badge-blocked',
-            messageText: ''
-          });
-          showToast('⚠️ 내부 통화로 감지되어 고객 발송이 차단되었습니다.');
-        } else {
-          renderResultState({
-            isBlocked: false,
-            situationTitle: '🤖 Gemini AI 정밀 분석 완성',
-            badgeClass: 'badge-quote',
-            messageText: replyText.trim()
-          });
-          showToast('✨ Gemini AI 통화 분석 문자가 완성되었습니다!');
-        }
-
-      } catch (err) {
-        console.error('Gemini Audio Analysis Error:', err);
-        showToast('⚠️ AI 분석 오류 발생. 기본 스마트 규칙 엔진으로 실행합니다.');
-        // 폴백 실행
-        const text = document.getElementById('call-input-text').value;
-        parseTextAndGenerate(text);
-      } finally {
-        btn.innerHTML = '<i class="fa-solid fa-brain"></i> 🤖 Gemini AI로 녹음 파일 분석하여 문자 생성';
-        btn.disabled = false;
-      }
-    }
-
-    function fileToBase64(file) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => {
-          const result = reader.result;
-          const base64 = result.split(',')[1];
-          resolve(base64);
-        };
-        reader.onerror = error => reject(error);
-        reader.readAsDataURL(file);
-      });
-    }
-
-    /* =========================================================================
-       7. 토스트 알림 헬퍼
+       6. 토스트 알림 헬퍼
        ========================================================================= */
     let toastTimer = null;
     function showToast(msg) {
@@ -1600,7 +1069,7 @@
       clearTimeout(toastTimer);
       toastTimer = setTimeout(() => {
         toast.classList.remove('show');
-      }, 2600);
+      }, 2400);
     }
   </script>
 </body>
