@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>대표 소개 & 브랜드 이야기 | 영디자인&바스</title>
+  <meta name="description" content="화려한 말보다 보이지 않는 기초 방수와 마감 한 끗으로 이야기합니다. 부산·양산 욕실 리모델링 및 아파트 인테리어 영디자인&바스 대표 이세영의 현장 이야기." />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="말주변은 없어도, 내 집 고치는 마음 하나로 현장을 지킵니다 | 영디자인&바스" />
+  <meta property="og:description" content="보이지 않는 기초 방수부터 마감까지, 대표 이세영과 가족이 정직하게 챙기는 영디자인&바스의 일하는 방식." />
+  <meta property="og:image" content="https://fillestar.github.io/youngdesign-bath/assets/service_bath.jpg" />
+  <link rel="icon" type="image/png" href="assets/real_logo.png" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <style>
+    :root {
+      --bg-warm: #F7F5F0;
+      --bg-card: #FFFFFF;
+      --bg-dark: #181B1E;
+      --text-main: #1C1F22;
+      --text-sub: #4E555D;
+      --text-muted: #7B848E;
+      --accent: #8C6239;
+      --accent-soft: #F3ECE2;
+      --border: #E6E1D8;
+      --max-w: 680px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: #EAE6DF;
+    }
+
+    body {
+      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif;
+      color: var(--text-main);
+      background-color: var(--bg-warm);
+      max-width: var(--max-w);
+      margin: 0 auto;
+      min-height: 100vh;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
+      line-height: 1.7;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      padding-bottom: 92px;
+    }
+
+    /* 상단 고정 미니 헤더 */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247, 245, 240, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 800;
+      font-size: 1.02rem;
+    }
+
+    .brand-link img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--border);
+    }
+
+    .home-btn {
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--text-sub);
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 999px;
+      transition: all 0.2s;
+    }
+
+    .home-btn:hover {
+      background: var(--accent);
+      color: #FFFFFF;
+      border-color: var(--accent);
+    }
+
+    /* 히어로 섹션 */
+    .hero {
+      padding: 36px 24px 28px;
+    }
+
+    .story-badge {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 5px 12px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-size: clamp(1.55rem, 5vw, 2.05rem);
+      font-weight: 800;
+      line-height: 1.38;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      margin-bottom: 16px;
+      text-wrap: balance;
+    }
+
+    .hero-lead {
+      font-size: 1.02rem;
+      color: var(--text-sub);
+      line-height: 1.72;
+      margin-bottom: 24px;
+    }
+
+    .hero-photo-wrap {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #EDE9E0;
+      position: relative;
+    }
+
+    .hero-photo-wrap img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-caption {
+      background: #181B1E;
+      color: #D5D9DF;
+      font-size: 0.82rem;
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* 본문 스토리 섹션 */
+    .section {
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .sec-num {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .sec-title {
+      font-size: 1.32rem;
+      font-weight: 800;
+      line-height: 1.4;
+      margin-bottom: 16px;
+      color: var(--text-main);
+    }
+
+    .prose p {
+      font-size: 0.98rem;
+      color: var(--text-sub);
+      margin-bottom: 14px;
+      line-height: 1.78;
+    }
+
+    .prose p:last-child {
+      margin-bottom: 0;
+    }
+
+    .prose strong {
+      color: var(--text-main);
+      font-weight: 700;
+      background: linear-gradient(transparent 65%, #EFE4D4 65%);
+    }
+
+    /* 인용구 박스 */
+    .quote-box {
+      margin: 22px 0;
+      padding: 20px 22px;
+      background: var(--bg-card);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 12px 12px 0;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+    }
+
+    .quote-text {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .quote-author {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* 3대 현장 원칙 카드 */
+    .principle-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .principle-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+    }
+
+    .p-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .p-badge {
+      background: var(--bg-dark);
+      color: #FFFFFF;
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+
+    .p-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .p-desc {
+      font-size: 0.93rem;
+      color: var(--text-sub);
+      line-height: 1.68;
+    }
+
+    /* 가족 & 팀워크 소개 박스 */
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .team-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .team-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .team-info h4 {
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .team-info p {
+      font-size: 0.89rem;
+      color: var(--text-sub);
+      line-height: 1.55;
+    }
+
+    /* 미니 사진 갤러리 (2x2) */
+    .mini-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .mini-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .mini-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .mini-card-body {
+      padding: 10px 12px;
+    }
+
+    .mini-card-title {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 2px;
+    }
+
+    .mini-card-sub {
+      font-size: 0.77rem;
+      color: var(--text-muted);
+    }
+
+    .more-link-btn {
+      display: block;
+      margin-top: 14px;
+      text-align: center;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      font-weight: 700;
+      font-size: 0.92rem;
+      padding: 13px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .more-link-btn:hover {
+      background: var(--accent-soft);
+    }
+
+    /* 대표 서명 및 안내 카드 */
+    .sign-card {
+      background: var(--bg-dark);
+      color: #FFFFFF;
+      border-radius: 16px;
+      padding: 26px 22px;
+      margin-top: 10px;
+    }
+
+    .sign-card h3 {
+      font-size: 1.18rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: #F4E8D8;
+    }
+
+    .sign-card p {
+      font-size: 0.93rem;
+      color: #D0D6DC;
+      line-height: 1.68;
+      margin-bottom: 18px;
+    }
+
+    .sign-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid #2E343B;
+      font-size: 0.92rem;
+      color: #E5E7EB;
+      font-weight: 700;
+    }
+
+    /* 오시는 길 요약 */
+    .store-box {
+      margin-top: 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      font-size: 0.88rem;
+      color: var(--text-sub);
+    }
+
+    .store-box strong {
+      color: var(--text-main);
+    }
+
+    /* 하단 고정 원터치 상담 바 */
+    .bottom-cta {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: var(--max-w);
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border);
+      padding: 10px 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      z-index: 200;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .cta-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      padding: 9px 10px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 0.88rem;
+      line-height: 1.25;
+    }
+
+    .cta-btn span {
+      font-size: 0.73rem;
+      font-weight: 500;
+      opacity: 0.9;
+      margin-top: 2px;
+    }
+
+    .cta-primary {
+      background: var(--accent);
+      color: #FFFFFF;
+    }
+
+    .cta-secondary {
+      background: var(--bg-dark);
+      color: #FFFFFF;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 고정 내비게이션 -->
+  <header class="top-nav">
+    <a href="영디자인바스_공식홈페이지_초안.html" onclick="if(location.protocol.startsWith('http')){this.href='./';}" class="brand-link">
+      <img src="assets/real_logo.png" alt="영디자인&바스 로고" />
+      <span>영디자인&amp;바스</span>
+    </a>
+    <a href="영디자인바스_공식홈페이지_초안.html" onclick="if(location.protocol.startsWith('http')){this.href='./';}" class="home-btn">← 공식 홈페이지 메인으로</a>
+  </header>
+
+  <!-- 히어로 섹션 -->
+  <section class="hero">
+    <span class="story-badge">BRAND STORY · 우리가 일하는 방식</span>
+    <h1 class="hero-title">“말주변은 없어도,<br>내 집 고치는 마음 하나로 현장을 지킵니다.”</h1>
+    <p class="hero-lead">
+      인테리어는 사진 한 장으로 끝나지 않고, 공사가 끝난 뒤 매일 아침저녁으로 가족이 살아가는 공간을 만드는 일입니다. 화려한 광고 대신 현장의 기본을 지키는 <strong>영디자인&amp;바스 대표 이세영</strong>과 가족의 이야기를 전합니다.
+    </p>
+    <div class="hero-photo-wrap">
+      <img src="assets/service_bath.jpg" alt="영디자인&바스 실제 욕실 리모델링 시공 사례" />
+      <div class="photo-caption">
+        <span>영디자인&amp;바스 실제 시공 현장</span>
+        <span>부산 전 지역 · 양산 직접 점검</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Part 1. 대표 소개 & 가족의 약속 -->
+  <section class="section">
+    <div class="sec-num">STORY 01</div>
+    <h2 class="sec-title">오랜 현장 경험의 아버지와<br>함께 발로 뛰는 가족의 이름</h2>
+    <div class="prose">
+      <p>
+        현장에서 오랫동안 직접 연장을 잡고 수많은 집을 고쳐온 <strong>이세영 대표</strong>는 사실 본인을 앞세워 자랑하는 것을 가장 쑥스러워합니다. “그저 맡겨주신 집, 하자 없이 깔끔하게 마감해 드리는 게 기술자의 본분”이라는 생각으로 묵묵히 현장을 지켜왔기 때문입니다.
+      </p>
+      <p>
+        지금의 <strong>영디자인&amp;바스</strong>는 그 오랜 현장 기술력 위에, 아버지와 함께 현장을 뛰며 시공과 온라인 소통을 챙기는 아들의 젊은 감각, 그리고 고객 한 분 한 분의 예산과 고민을 편안하게 듣고 정리하는 상담이 하나로 모여 함께 만들어가고 있습니다.
+      </p>
+    </div>
+
+    <div class="quote-box">
+      <div class="quote-text">“가족의 이름을 걸고 하는 일입니다. 당장 눈앞의 공사 한 건보다, 시공이 끝난 뒤 ‘여기 맡기길 참 잘했다’는 말씀 한 마디가 가장 큰 보람입니다.”</div>
+      <div class="quote-author">— 영디자인&amp;바스 대표 이세영</div>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-item">
+        <div class="team-icon">🛠️</div>
+        <div class="team-info">
+          <h4>현장·시공 총괄 (대표 이세영)</h4>
+          <p>오랜 인테리어 현장 경험을 바탕으로 철거·방수·타일·마감까지 현장의 핵심 공정을 직접 꼼꼼히 살핍니다.</p>
+        </div>
+      </div>
+      <div class="team-item">
+        <div class="team-icon">🤝</div>
+        <div class="team-info">
+          <h4>각 분야 베테랑 전문 팀과의 탄탄한 협업</h4>
+          <p>욕실 리모델링부터 도배·장판·마루·싱크대·창호·목재·조명까지, 현장에서 오래 호흡을 맞춰온 검증된 전문 사장님들과 함께 완성도를 높입니다.</p>
+        </div>
+      </div>
+      <div class="team-item">
+        <div class="team-icon">💬</div>
+        <div class="team-info">
+          <h4>부담 없는 맞춤 상담 &amp; 꼼꼼한 기록</h4>
+          <p>과잉 견적 없이 고객님 댁의 상태와 예산에 꼭 맞는 시공 범위만 정직하게 안내해 드립니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Part 2. 현장에서 타협하지 않는 3가지 기준 -->
+  <section class="section">
+    <div class="sec-num">STORY 02</div>
+    <h2 class="sec-title">영디자인&amp;바스가 현장에서<br>절대 타협하지 않는 3가지</h2>
+    <p style="font-size: 0.94rem; color: var(--text-sub);">
+      겉모습은 비슷해 보여도 시간이 지나면 차이가 나는 이유, 바로 기본 공정에 있습니다.
+    </p>
+
+    <div class="principle-list">
+      <div class="principle-card">
+        <div class="p-head">
+          <span class="p-badge">원칙 01</span>
+          <span class="p-title">덮으면 안 보이는 기초 방수와 물매</span>
+        </div>
+        <p class="p-desc">
+          타일을 붙이고 나면 속은 보이지 않습니다. 하지만 물이 고이지 않고 자연스럽게 빠지는 바닥 구배(물매)와 꼼꼼한 방수 작업이 뒷받침되어야 수년 뒤에도 누수나 냄새 걱정 없이 편안하게 쓰실 수 있습니다.
+        </p>
+      </div>
+
+      <div class="principle-card">
+        <div class="p-head">
+          <span class="p-badge">원칙 02</span>
+          <span class="p-title">살면서 하는 공사도 안심할 수 있는 보양과 정리</span>
+        </div>
+        <p class="p-desc">
+          거주 중에 욕실이나 부분 수리를 하실 때 가장 걱정하시는 부분이 먼지와 불편함입니다. 엘리베이터와 복도, 실내 이동 동선까지 꼼꼼하게 보양하고 작업 후 정리를 철저히 챙깁니다.
+        </p>
+      </div>
+
+      <div class="principle-card">
+        <div class="p-head">
+          <span class="p-badge">원칙 03</span>
+          <span class="p-title">처음 약속한 자재와 정직한 견적</span>
+        </div>
+        <p class="p-desc">
+          무조건 비싼 자재를 권하지 않습니다. 현장 실측을 통해 꼭 고쳐야 할 부분과 살려서 쓸 수 있는 부분을 구분해 드리고, 상담 때 약속드린 자재와 마감 기준을 끝까지 지킵니다.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Part 3. 실제 현장 사진 -->
+  <section class="section">
+    <div class="sec-num">STORY 03</div>
+    <h2 class="sec-title">백 마디 말보다<br>실제 현장 기록으로 증명합니다</h2>
+    <p style="font-size: 0.93rem; color: var(--text-sub);">
+      영디자인&amp;바스가 직접 다녀온 부산·인근 지역 아파트 실제 시공 모습입니다.
+    </p>
+
+    <div class="mini-gallery">
+      <div class="mini-card">
+        <img src="assets/portfolio_1.jpg" alt="욕실 리모델링 시공 사례" loading="lazy" />
+        <div class="mini-card-body">
+          <div class="mini-card-title">모던 욕실 리모델링</div>
+          <div class="mini-card-sub">기초 방수 · 졸리컷 마감</div>
+        </div>
+      </div>
+      <div class="mini-card">
+        <img src="assets/portfolio_2.jpg" alt="거실 및 실내 마감 사례" loading="lazy" />
+        <div class="mini-card-body">
+          <div class="mini-card-title">실내 타일 &amp; 공간 마감</div>
+          <div class="mini-card-sub">정교한 라인 · 수평 시공</div>
+        </div>
+      </div>
+      <div class="mini-card">
+        <img src="assets/portfolio_5.jpg" alt="보양 및 기초 철거 작업" loading="lazy" />
+        <div class="mini-card-body">
+          <div class="mini-card-title">꼼꼼한 보양 &amp; 기초 공정</div>
+          <div class="mini-card-sub">거주 중 공사 먼지 최소화</div>
+        </div>
+      </div>
+      <div class="mini-card">
+        <img src="assets/portfolio_7.jpg" alt="아파트 토탈 리모델링 사례" loading="lazy" />
+        <div class="mini-card-body">
+          <div class="mini-card-title">아파트 토탈 인테리어</div>
+          <div class="mini-card-sub">주방 · 마루 · 도배 · 조명 협업</div>
+        </div>
+      </div>
+    </div>
+
+    <a href="영디자인바스_공식홈페이지_초안.html#portfolio" onclick="if(location.protocol.startsWith('http')){this.href='./#portfolio';}" class="more-link-btn">
+      📸 공식 홈페이지에서 실제 시공 사례 더 보기 →
+    </a>
+  </section>
+
+  <!-- Part 4. 맺음말 및 매장 안내 -->
+  <section class="section">
+    <div class="sign-card">
+      <h3>편한 마음으로 물어보세요</h3>
+      <p>
+        “우리 집 욕실도 부분 수리가 될까?”, “예산이 이 정도인데 어디까지 고칠 수 있을까?”<br>
+        당장 공사를 결정하지 않으셔도 괜찮습니다. 전화나 문자로 편하게 물어보시면 현장 경험에 비추어 가장 현실적이고 정직한 방법을 안내해 드리겠습니다.
+      </p>
+      <div class="sign-line">
+        <span>영디자인&amp;바스</span>
+        <span>대표 이 세 영 드림</span>
+      </div>
+    </div>
+
+    <div class="store-box">
+      <p style="margin-bottom: 6px;">📍 <strong>오프라인 매장 위치</strong> : 부산 사하구 장림번영로 31 (두송로 25), 장림우림그린맨션 상가동 1층 103호 (1호선 장림역 2번 출구 도보 3분)</p>
+      <p style="margin-bottom: 6px;">📞 <strong>상담·견적 문의</strong> : 010-4477-3087 &nbsp;|&nbsp; <strong>현장·시공 문의</strong> : 010-4564-3792</p>
+      <p style="color: var(--accent); font-weight: 600;">※ 현장 시공 중인 경우가 많아 매장이 비어 있을 수 있으니, 방문·상담 전 미리 전화 주시면 서로 가능한 시간을 맞춰 안내해 드립니다.</p>
+    </div>
+  </section>
+
+  <!-- 하단 고정 원터치 전화/상담 바 -->
+  <div class="bottom-cta">
+    <a href="tel:010-4477-3087" class="cta-btn cta-primary">
+      📞 상담·견적 전화하기
+      <span>010-4477-3087 (무료 실측·상담)</span>
+    </a>
+    <a href="tel:010-4564-3792" class="cta-btn cta-secondary">
+      🛠️ 현장·시공 문의
+      <span>010-4564-3792 (대표 이세영)</span>
+    </a>
+  </div>
+
+</body>
+</html>
